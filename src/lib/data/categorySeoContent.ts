@@ -1,0 +1,173 @@
+export interface CategorySeoContent {
+  metaTitle: string;
+  metaDescription: string;
+  h1: string;
+  overview: string;
+  popular: string;
+  nutrition: string;
+  faqs: { question: string; answer: string }[];
+  relatedCategories: string[];
+}
+
+export const CATEGORY_SEO_CONTENT: Record<string, CategorySeoContent> = {
+  'deals': {
+    metaTitle: 'Wingstop Wing Deals Calories, Price & Nutrition Facts 2026',
+    metaDescription: 'Find the best Wingstop deals and specials for 2026. View prices, calories, and bundle offers for wings, tenders, and sandwiches.',
+    h1: 'Wingstop Deals Menu & Prices (2026)',
+    overview: 'The Wingstop Deals Menu is the best way to save money on your favorite meals. These bundles often combine wings, fries, and drinks at a lower price than ordering them alone. Whether you are eating by yourself or with friends, our deals help you get more food for less. Check out the <a href="/menu" class="text-[#006938] font-bold hover:underline">full menu</a> to see every option available today.',
+    popular: 'One of our most popular offers is the 30 for $30 deal, which is perfect for groups who want a variety of flavors. The Boneless Wing Combo deals are also very popular for a quick and affordable lunch. We update our specials often, so there is always a new way to enjoy Wingstop. Before you order, you can also look at the <a href="/allergen-menu" class="text-[#006938] font-bold hover:underline">allergen menu</a> to stay safe.',
+    nutrition: 'Even with our great deals, we provide full nutrition information for every item. You can see the calories, protein, and fat for each bundle right here. This makes it easy to enjoy a great value meal while still tracking your daily goals. Use our <a href="/" class="text-[#006938] font-bold hover:underline">Wingstop calorie calculator</a> to add up your entire order and see the total numbers.',
+    faqs: [
+      { question: 'What is on the Wingstop Deals Menu?', answer: 'The Wingstop Deals Menu includes combo packs, bundle offers, and limited-time promotions that pair wings with sides and drinks at a discounted price.' },
+      { question: 'How much do Wingstop deals cost?', answer: 'Wingstop deal prices vary by location but typically start from around $7 to $15 depending on the combo size and items included.' },
+      { question: 'Are Wingstop deals available for delivery?', answer: 'Yes, most Wingstop deals are available for delivery through the Wingstop app and popular delivery platforms. Prices may vary slightly online.' },
+      { question: 'How many calories are in Wingstop deals?', answer: 'Calorie counts for Wingstop deals range from about 800 to over 2000 depending on the combo size and flavor chosen. Check each item on this page for exact numbers.' },
+      { question: 'Does Wingstop have daily specials?', answer: 'Wingstop runs limited-time promotions and seasonal specials. Check the deals section regularly or visit your local store for the latest offers.' },
+    ],
+    relatedCategories: ['combos', 'group-packs', 'by-the-piece'],
+  },
+  'combos': {
+    metaTitle: 'Wingstop Wing Combos Calories, Price & Nutrition Facts 2026',
+    metaDescription: 'Check out the latest Wingstop Wing Combos menu with updated prices for 2026. View full nutrition facts, including calories, protein, and fat.',
+    h1: 'Wingstop Wing Combos Menu & Prices (2026)',
+    overview: 'A Wingstop Wing Combo is the easiest way to get a full, satisfying meal in one go. Every combo comes with your choice of wings, world-famous seasoned fries (or fresh veggie sticks), a tasty dipping sauce, and a cold drink. Whether you are hungry for a quick lunch or a big dinner, these bundles give you everything you need. You can browse the <a href="/menu" class="text-[#006938] font-bold hover:underline">full Wingstop menu</a> to see all our tasty options.',
+    popular: 'Our guests love the 8-piece Boneless Combo because it is crispy, juicy, and very easy to eat. If you prefer the traditional bone-in style, the 10-piece Classic Combo is a top-rated choice. You can pick up to 2 different signature flavors, like the zesty Lemon Pepper or the spicy Original Hot. Before you order, make sure to check the <a href="/allergen-menu" class="text-[#006938] font-bold hover:underline">allergen menu</a> for safety information.',
+    nutrition: 'We make it very simple to track what you eat. A typical Wingstop combo usually has between 800 and 1,500 calories, depending on the wings and drink you choose. We provide the exact amount of protein, fat, and carbs for every item so you can make healthy choices. Use our <a href="/" class="text-[#006938] font-bold hover:underline">Wingstop nutrition calculator</a> to see your total numbers and stay on track with your goals.',
+    faqs: [
+      { question: 'What comes in a Wingstop combo?', answer: 'Every Wingstop combo includes wings (boneless or classic), regular fries or veggie sticks, one dip, and a 20oz drink.' },
+      { question: 'How much is a Wingstop combo meal?', answer: 'Wingstop combo prices start around $8.49 for a 6-piece and go up to about $18 for larger 16-piece combos. Prices vary by location.' },
+      { question: 'How many calories are in a Wingstop combo?', answer: 'A 6 pc combo has around 1800-1900 calories including fries and drink. Exact numbers vary by wing type and flavor.' },
+      { question: 'Can I choose multiple flavors in a combo?', answer: 'Yes! Depending on the combo size, you can choose up to 2 or 3 different flavors for your wings.' },
+      { question: 'What is the best value Wingstop combo?', answer: 'The larger combos like the 16-piece offer the best per-piece pricing, making them ideal for bigger appetites or sharing.' },
+    ],
+    relatedCategories: ['deals', 'group-packs', 'tenders'],
+  },
+  'group-packs': {
+    metaTitle: 'Wingstop Group Packs Calories, Price & Nutrition Facts 2026',
+    metaDescription: 'Explore Wingstop Group Packs menu with updated prices for 2026. Perfect for parties and family dinners. View full nutrition facts for large wing orders.',
+    h1: 'Wingstop Wing Group Packs Menu & Prices (2026)',
+    overview: 'The Wingstop Group Packs Menu is perfect for any gathering, from game day to family dinner. These large packs come with enough wings for everyone to enjoy. You can choose different flavors so that everyone gets exactly what they want. It is the best way to feed a group while saving money. Check out the <a href="/menu" class="text-[#006938] font-bold hover:underline">full Wingstop menu</a> for more party options.',
+    popular: 'Our 24-piece and 30-piece packs are the most popular choices for families. For larger parties, the 50-piece and 100-piece packs offer the best value. Every group pack comes with large sides like fries and veggie sticks, plus plenty of dipping sauces. If anyone in your group has allergies, please review the <a href="/allergen-menu" class="text-[#006938] font-bold hover:underline">allergen menu</a> before you order.',
+    nutrition: 'We provide full nutrition facts for all our group packs so you can plan your meal. You can see the total calories, protein, and fat for each pack here. This helps you track your share of the meal and balance your daily diet. Use our <a href="/" class="text-[#006938] font-bold hover:underline">Wingstop nutrition calculator</a> to see the numbers for your portion.',
+    faqs: [
+      { question: 'How many people does a Wingstop group pack feed?', answer: 'A 16-piece group pack typically feeds 3-4 people, while larger packs with 24 or more pieces can serve 5-8 people depending on appetite.' },
+      { question: 'What is the price of Wingstop group packs?', answer: 'Group pack prices range from about $20 to $45+ depending on the size and whether you add sides and drinks.' },
+      { question: 'Can you mix flavors in group packs?', answer: 'Yes, group packs let you choose multiple flavors so everyone can enjoy their favorites.' },
+      { question: 'Do group packs come with sides?', answer: 'Some group packs include sides and drinks. Check each pack on this page for exactly what is included.' },
+      { question: 'Are Wingstop group packs good for parties?', answer: 'Absolutely. Group packs are designed for gatherings, parties, and game day. They offer great value and plenty of variety.' },
+    ],
+    relatedCategories: ['combos', 'by-the-piece', 'sides'],
+  },
+  'by-the-piece': {
+    metaTitle: 'Wingstop Wings By the Piece Calories, Price & Nutrition Facts 2026',
+    metaDescription: 'Order exactly the number of Wingstop wings you want. View 2026 prices and nutrition facts for boneless and classic wings by the piece.',
+    h1: 'Wingstop Wings By the Piece Menu & Prices (2026)',
+    overview: 'The Wingstop Wings By the Piece Menu gives you total control over your order. You can choose the exact number of wings you want in your favorite flavors. It is the best option when you want to mix and match different styles or if you just need a small snack. You can see the <a href="/menu" class="text-[#006938] font-bold hover:underline">full Wingstop menu</a> for more ways to enjoy our wings.',
+    popular: 'Our most popular choices are the 10-piece and 15-piece orders, which come in boneless or classic bone-in styles. You can pick up to 2 different flavors for these orders. Whether you like the dry rub of Lemon Pepper or the wet sauce of Mango Habanero, ordering by the piece lets you have it your way. Don\'t forget to check the <a href="/allergen-menu" class="text-[#006938] font-bold hover:underline">allergen menu</a> for dietary information.',
+    nutrition: 'We provide the full nutrition breakdown for every piece count. You can see the calories, protein, and fat for each order right here on the list. This helps you know exactly what is in your meal even when you build it yourself. Use our <a href="/" class="text-[#006938] font-bold hover:underline">Wingstop nutrition calculator</a> to add up your wings and any extra sides you order.',
+    faqs: [
+      { question: 'How much are wings by the piece at Wingstop?', answer: 'Prices start around $7 for a small order and increase with piece count. Boneless and classic wings may have slightly different pricing.' },
+      { question: 'What is the difference between boneless and classic wings?', answer: 'Classic wings are bone-in and have a more traditional wing experience. Boneless wings are breaded chicken pieces — juicy, crispy, and easier to eat.' },
+      { question: 'Can you mix flavors when ordering by the piece?', answer: 'Yes, you can typically choose up to 2-3 flavors depending on the number of pieces ordered.' },
+      { question: 'How many calories in Wingstop wings per piece?', answer: 'A single classic wing has about 100-120 calories, while a boneless wing has roughly 80-100 calories depending on the flavor.' },
+      { question: 'What are the best Wingstop wing flavors?', answer: 'Fan favorites include Lemon Pepper, Original Hot, Mango Habanero, and Garlic Parmesan. Flavor preferences vary by region.' },
+    ],
+    relatedCategories: ['combos', 'tenders', 'dips'],
+  },
+  'tenders': {
+    metaTitle: 'Wingstop Chicken Tenders Calories, Price & Nutrition Facts 2026',
+    metaDescription: 'Check out Wingstop crispy tenders menu with updated prices for 2026. Hand-breaded chicken tenders with full nutrition facts, calories, and protein data.',
+    h1: 'Wingstop Crispy Chicken Tenders Menu & Prices (2026)',
+    overview: 'The Wingstop Tenders Menu features our hand-breaded, crispy chicken strips made from 100% white meat. Just like our wings, you can have your tenders tossed in any of our bold flavors. They are available as individual orders or as part of a full combo meal. Visit the <a href="/menu" class="text-[#006938] font-bold hover:underline">full Wingstop menu</a> to see all our tasty chicken options.',
+    popular: 'Our 3-piece and 5-piece Tender Combos are the most popular choices for a filling meal. They come with seasoned fries, a dip, and a cold drink. You can choose any of our 11 signature flavors, from the mild Garlic Parmesan to the extra hot Atomic flavor. For safety, you can check the <a href="/allergen-menu" class="text-[#006938] font-bold hover:underline">allergen menu</a> to see exactly what is in our breading and sauces.',
+    nutrition: 'We provide the exact nutrition numbers for all our chicken tenders. You can see the calories, protein, and fat for every piece count and combo on this page. Tenders are a great source of protein for your daily diet. Use our <a href="/" class="text-[#006938] font-bold hover:underline">Wingstop nutrition calculator</a> to see the full breakdown and stay on track with your macros.',
+    faqs: [
+      { question: 'How many calories are in Wingstop tenders?', answer: 'Calorie counts vary by piece count and flavor, but a 3-piece tender order has roughly 400-500 calories before adding sides.' },
+      { question: 'Are Wingstop tenders white meat?', answer: 'Yes, Wingstop tenders are made with 100% all-white meat chicken, hand-breaded and cooked to order.' },
+      { question: 'How much do Wingstop tenders cost?', answer: 'Tender prices start around $6 for a small order and go up to about $15 for larger combo meals with sides and a drink.' },
+      { question: 'Can you get tenders tossed in flavor?', answer: 'Yes, just like wings, tenders can be tossed in any of Wingstop signature dry rubs or wet sauces.' },
+      { question: 'What are the best dips for Wingstop tenders?', answer: 'Ranch, Honey Mustard, and Blue Cheese are the most popular dip choices for chicken tenders at Wingstop.' },
+    ],
+    relatedCategories: ['combos', 'sandwiches', 'sides'],
+  },
+  'sandwiches': {
+    metaTitle: 'Wingstop Chicken Sandwich Calories, Price & Nutrition Facts 2026',
+    metaDescription: 'Check out the Wingstop Chicken Sandwich menu with updated prices for 2026. View calories, protein, and fat for our crispy sandwiches in any bold flavor.',
+    h1: 'Wingstop Chicken Sandwich Menu & Prices (2026)',
+    overview: 'The Wingstop Chicken Sandwich Menu brings our signature big, bold flavors to a toasted brioche bun. Each sandwich features a crispy, juicy chicken fillet topped with crunchy pickles and tossed in your favorite flavor. You can order it by itself or as part of a combo meal. Take a look at the <a href="/menu" class="text-[#006938] font-bold hover:underline">full Wingstop menu</a> for all our different food options.',
+    popular: 'Our most popular choice is the Chicken Sandwich Combo, which gives you a side of seasoned fries and a cold drink with your sandwich. Since you can choose any of our 11 flavors, from Garlic Parmesan to the fiery Mango Habanero, there is a sandwich for everyone. For safety, you can check our <a href="/allergen-menu" class="text-[#006938] font-bold hover:underline">allergen menu</a> to see exactly what is in our sandwiches and toppings.',
+    nutrition: 'We provide the full nutrition information for every sandwich on our menu. You can easily find the calories, protein, and fat counts right here on the page. This helps you know how a sandwich fits into your daily diet plan. Use our <a href="/" class="text-[#006938] font-bold hover:underline">Wingstop nutrition calculator</a> to see the total numbers for your entire meal.',
+    faqs: [
+      { question: 'How many calories are in a Wingstop chicken sandwich?', answer: 'A standard Wingstop chicken sandwich has around 700-900 calories depending on the flavor and toppings.' },
+      { question: 'How much is a Wingstop chicken sandwich?', answer: 'Chicken sandwich prices typically range from $6 to $10, or around $10-$13 for a combo with fries and a drink.' },
+      { question: 'What comes on a Wingstop chicken sandwich?', answer: 'It comes with a crispy chicken fillet, pickles, and mayo on a toasted brioche-style bun, tossed in your choice of flavor.' },
+      { question: 'Can you choose a flavor for the sandwich?', answer: 'Yes, you can have your chicken sandwich tossed in any Wingstop signature flavor, just like wings.' },
+      { question: 'Is the Wingstop sandwich spicy?', answer: 'It depends on the flavor you choose. Options like Original Hot and Mango Habanero are spicy, while Lemon Pepper and Garlic Parmesan are milder.' },
+    ],
+    relatedCategories: ['tenders', 'combos', 'sides'],
+  },
+  'sides': {
+    metaTitle: 'Wingstop Sides Calories, Price & Nutrition Facts 2026',
+    metaDescription: 'Check out the full Wingstop Sides menu with updated prices for 2026. View calories and nutrition for seasoned fries, Cajun corn, and fresh veggie sticks.',
+    h1: 'Wingstop Sides Menu & Prices (2026)',
+    overview: 'The Wingstop Sides Menu has all the perfect snacks to go with your wings. From our famous seasoned fries to crunchy veggie sticks, our sides make every meal better. Most children and adults love our hot, crispy fries that are cooked to order. You can browse the <a href="/menu" class="text-[#006938] font-bold hover:underline">full Wingstop menu</a> to see the entire food lineup.',
+    popular: 'Our Seasoned Fries are the most popular side, followed by the Louisiana Voodoo Fries and Cajun Fried Corn. If you want something lighter, our Veggie Sticks are a great, crunchy choice. All our sides are designed to be shared or enjoyed on their own. For dietary concerns, please check our <a href="/allergen-menu" class="text-[#006938] font-bold hover:underline">allergen menu</a> to see which sides are safe for you.',
+    nutrition: 'Every side on our menu has full nutrition data available. You can see the calories, fat, and carbs for both regular and large sizes here. Whether you are looking for a low-calorie snack like veggie sticks or a filling side of fries, we give you the exact numbers. Use our <a href="/" class="text-[#006938] font-bold hover:underline">Wingstop nutrition calculator</a> to track your entire meal including your sides.',
+    faqs: [
+      { question: 'What sides does Wingstop have?', answer: 'Wingstop offers Seasoned Fries, Cajun Fried Corn, Coleslaw, Louisiana Voodoo Fries, Veggie Sticks, and Baked Beans depending on the location.' },
+      { question: 'How much are Wingstop sides?', answer: 'Most sides cost between $2 and $5. Large sizes are slightly more expensive but offer better value.' },
+      { question: 'What is the healthiest Wingstop side?', answer: 'Veggie Sticks are the lowest calorie side option at Wingstop, making them ideal for health-conscious diners.' },
+      { question: 'How many calories are in Wingstop fries?', answer: 'Regular Seasoned Fries have approximately 310-360 calories. A large order has around 470-540 calories.' },
+      { question: 'Can you order sides separately at Wingstop?', answer: 'Yes, all sides can be ordered as standalone items in regular or large sizes without needing a combo.' },
+    ],
+    relatedCategories: ['dips', 'combos', 'drinks'],
+  },
+  'dips': {
+    metaTitle: 'Wingstop Dips & Flavors Calories, Price & Nutrition Facts 2026',
+    metaDescription: 'Check out the full Wingstop Dips & Sauces menu with updated prices for 2026. View calories and nutrition for Ranch, Blue Cheese, and Honey Mustard.',
+    h1: 'Wingstop Dips & Sauces Menu & Prices (2026)',
+    overview: 'The Wingstop Dips & Sauces Menu is where our world-famous flavor comes to life. From our house-made Ranch and Blue Cheese to our signature honey mustard, these dips make every bite of chicken even better. Most of our combo meals include one dip, but you can always add more to try all the different tastes. Take a look at the <a href="/menu" class="text-[#006938] font-bold hover:underline">full Wingstop menu</a> for more ways to enjoy our sauces.',
+    popular: 'Our house-made Ranch is the fan-favorite choice for almost everyone, followed by Blue Cheese and Honey Mustard. Whether you like a cool, creamy dip or something slightly sweet, we have a sauce for your wings and tenders. We keep our dip prices affordable so you can always add an extra one to your order. For safety, please check our <a href="/allergen-menu" class="text-[#006938] font-bold hover:underline">allergen menu</a> because some of our dips contain dairy or egg.',
+    nutrition: 'We provide all the nutrition details for every dip on our menu. You can see the calories and fat for each serving right here on the list. Dips can add extra calories to your meal, so it is helpful to know the numbers before you order. Use our <a href="/" class="text-[#006938] font-bold hover:underline">Wingstop nutrition calculator</a> to see how adding extra dips changes your total for the day.',
+    faqs: [
+      { question: 'What dips does Wingstop have?', answer: 'Wingstop offers Ranch, Blue Cheese, Honey Mustard, Ketchup, and various signature dipping sauces depending on your location.' },
+      { question: 'How much do Wingstop dips cost?', answer: 'Most dips cost between $0.50 and $1.50. Combo meals usually include one dip for free.' },
+      { question: 'How many calories are in Wingstop Ranch?', answer: 'A single serving of Wingstop Ranch dip has approximately 200-230 calories and around 23g of fat.' },
+      { question: 'Are Wingstop dips gluten free?', answer: 'Most Wingstop dips are gluten-free, but cross-contamination is possible. Check the allergen menu for specifics.' },
+      { question: 'Can you get extra dips at Wingstop?', answer: 'Yes, extra dips can be added to any order for a small additional charge. It is a great way to try different flavors.' },
+    ],
+    relatedCategories: ['sides', 'by-the-piece', 'tenders'],
+  },
+  'drinks': {
+    metaTitle: 'Wingstop Drinks Calories, Price & Nutrition Facts 2026',
+    metaDescription: 'Explore the Wingstop Drinks menu with updated prices for 2026. View calorie and nutrition facts for fountain sodas, iced tea, and lemonade.',
+    h1: 'Wingstop Drinks Menu & Prices (2026)',
+    overview: 'The Wingstop Drinks Menu offers a great variety of cold beverages to wash down your bold wing flavors. We serve everything from classic fountain sodas like Coke and Dr Pepper to fresh lemonade and iced tea. A cold drink is the perfect final touch for any Wingstop meal. You can see the <a href="/menu" class="text-[#006938] font-bold hover:underline">full Wingstop menu</a> to see all the different meal and drink options.',
+    popular: 'Our most popular choices are Coca-Cola, Dr Pepper, and Sprite. If you want something different, many guests also love our sweet tea and fresh lemonade. We offer multiple sizes so you can get exactly as much as you need. Most of our combo meals already come with a 20oz drink included. For safety, you can check our <a href="/allergen-menu" class="text-[#006938] font-bold hover:underline">allergen menu</a> to see the ingredients in our drinks.',
+    nutrition: 'We show you the full nutrition data for every drink size on our menu. You can see the calories and sugar counts for regular sodas, as well as the zero-calorie options like water and unsweetened tea. Choosing a zero-calorie drink is a great way to enjoy your meal while staying healthy. Use our <a href="/" class="text-[#006938] font-bold hover:underline">Wingstop nutrition calculator</a> to see how your drink choice affects your total meal.',
+    faqs: [
+      { question: 'What drinks does Wingstop have?', answer: 'Wingstop offers Coke, Diet Coke, Sprite, Dr Pepper, Fanta, Hi-C, Lemonade, Sweet Tea, Unsweet Tea, and Water.' },
+      { question: 'How much are drinks at Wingstop?', answer: 'Drinks are typically $2-$3 individually and are included free with most combo meals.' },
+      { question: 'How many calories are in Wingstop drinks?', answer: 'Calorie counts range from 0 (water) to about 310 calories for a large regular soda.' },
+      { question: 'Does Wingstop have sugar-free drinks?', answer: 'Yes, Diet Coke, Unsweet Tea, and Water are all zero or low calorie options available at Wingstop.' },
+      { question: 'Can you upgrade drink size in a combo?', answer: 'Yes, you can upgrade from a 20oz to a larger size for a small upcharge at most locations.' },
+    ],
+    relatedCategories: ['sides', 'combos', 'desserts'],
+  },
+  'desserts': {
+    metaTitle: 'Wingstop Desserts Calories, Price & Nutrition Facts 2026',
+    metaDescription: 'Check out the Wingstop Desserts menu with updated prices for 2026. View calorie and nutrition facts for our Chocolate Chunk Cookies and sweet treats.',
+    h1: 'Wingstop Desserts Menu & Prices (2026)',
+    overview: 'The Wingstop Desserts Menu is the best way to finish your savory meal with something sweet. We offer simple, delicious treats that satisfy your cravings after a spicy wing dinner. These desserts are pre-baked and ready for you to enjoy. Take a look at the <a href="/menu" class="text-[#006938] font-bold hover:underline">full Wingstop menu</a> for all our savory and sweet options.',
+    popular: 'Our most popular dessert is the Chocolate Chunk Cookie, which is full of chocolate pieces and baked to be soft. People love adding a cookie to their order for a sweet snack after their meal. We keep our dessert prices low so they are an easy addition to any family dinner. For safety, please check our <a href="/allergen-menu" class="text-[#006938] font-bold hover:underline">allergen menu</a> because our baked goods contain wheat, dairy, and egg.',
+    nutrition: 'We provide all the nutrition facts for our desserts so you know exactly what is in your treat. You can see the calories, sugar, and fat for each dessert item here. Knowing the numbers helps you enjoy your sweet treat while staying on track with your goals. Use our <a href="/" class="text-[#006938] font-bold hover:underline">Wingstop nutrition calculator</a> to see how a dessert fits into your total day.',
+    faqs: [
+      { question: 'What desserts does Wingstop have?', answer: 'Wingstop offers a small selection of baked goods including Chocolate Chunk Cookies and seasonal treats.' },
+      { question: 'How much are Wingstop desserts?', answer: 'Most desserts cost between $2 and $4, making them an easy add-on to any order.' },
+      { question: 'How many calories are in a Wingstop cookie?', answer: 'A single Chocolate Chunk Cookie from Wingstop has approximately 170-220 calories.' },
+      { question: 'Are Wingstop desserts gluten free?', answer: 'No, most Wingstop desserts contain wheat and are not gluten-free. Check the allergen menu for full details.' },
+      { question: 'Can you order desserts for delivery?', answer: 'Yes, all Wingstop desserts can be added to delivery orders through the app or partner delivery platforms.' },
+    ],
+    relatedCategories: ['drinks', 'sides', 'dips'],
+  },
+};

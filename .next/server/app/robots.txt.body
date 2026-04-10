@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://wingstopcaloriecalculator.us/sitemap_index.xml
