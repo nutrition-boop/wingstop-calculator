@@ -1,1 +1,7 @@
-{}
+{
+  "/api/locations-mini/route": "app/api/locations-mini/route.js",
+  "/manifest.webmanifest/route": "app/manifest.webmanifest/route.js",
+  "/icon.png/route": "app/icon.png/route.js",
+  "/locations/[state]/[city]/page": "app/locations/[state]/[city]/page.js",
+  "/locations/[state]/[city]/[slug]/page": "app/locations/[state]/[city]/[slug]/page.js"
+}
