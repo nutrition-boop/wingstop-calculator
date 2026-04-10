@@ -43,11 +43,11 @@ const CATEGORY_ORDER = [
 // ─── SEO Metadata ─────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: 'Wingstop Menu Calories, Price & Nutrition Facts 2026',
+  title: 'Wingstop Menu With Prices & Pictures | Updated 2026',
   description: 'View the complete Wingstop menu with updated prices and nutrition facts for 2026. Official guide to wings, deals, combos, and sides with calorie counts.',
   alternates: { canonical: '/menu' },
   openGraph: {
-    title: 'Wingstop Menu Calories, Price & Nutrition Facts 2026',
+    title: 'Wingstop Menu With Prices & Pictures | Updated 2026',
     description: 'View the complete Wingstop menu with updated prices and nutrition facts for 2026. Official guide to wings, deals, combos, and sides with calorie counts.',
   }
 };
@@ -161,10 +161,11 @@ export default async function MenuPage() {
           <div className="flex gap-2 min-w-max mx-auto justify-start md:justify-center">
             {Object.entries(structured).map(([cat]) => {
               const cfg = categoryConfig[cat] ?? { label: cat, icon: Utensils, color: 'text-gray-600', bg: 'bg-gray-100 border-gray-200' };
+              const Icon = cfg.icon;
               return (
                 <a key={cat} href={`#cat-${cat}`}
                   className="flex items-center gap-2 px-4 py-2 bg-white rounded-2xl border border-gray-100 shadow-sm text-[10px] font-black uppercase tracking-widest text-gray-700 hover:bg-primary hover:text-white hover:border-primary hover:shadow-md transition-all whitespace-nowrap">
-                  <span><cfg.icon size={14} className={cfg.color} /></span> {cfg.label}
+                  <span><Icon size={14} className={cfg.color} /></span> {cfg.label}
                 </a>
               );
             })}
@@ -176,12 +177,13 @@ export default async function MenuPage() {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-16 space-y-24">
         {Object.entries(structured).map(([cat, items]) => {
           const cfg = categoryConfig[cat] ?? { label: cat, icon: Utensils, color: 'text-gray-600', bg: 'bg-gray-100 border-gray-200' };
+          const Icon = cfg.icon;
           return (
             <section key={cat} id={`cat-${cat}`} className="scroll-mt-40">
               {/* Category Header */}
               <div className="flex items-center gap-5 mb-10">
                 <div className={`w-16 h-16 rounded-[1.25rem] border-2 flex items-center justify-center text-3xl shrink-0 ${cfg.bg}`}>
-                  <cfg.icon size={28} className={cfg.color} />
+                  <Icon size={28} className={cfg.color} />
                 </div>
                 <div>
                   <h2 className="text-3xl font-black italic uppercase tracking-tight text-gray-900 leading-none">{cfg.label}</h2>
@@ -200,7 +202,7 @@ export default async function MenuPage() {
                       {item.image ? (
                         <Image src={item.image} alt={item.name} fill className="object-contain p-4" sizes="(max-width: 768px) 100vw, 300px" />
                       ) : (
-                        <cfg.icon size={48} className={cfg.color} />
+                        <Icon size={48} className={cfg.color} />
                       )}
                     </div>
 
@@ -285,7 +287,7 @@ export default async function MenuPage() {
                     <Icon size={18} />
                   </div>
                   <p className="text-[11px] font-black uppercase tracking-widest text-gray-900 mb-1">{label}</p>
-                  <p className="text-10px] font-medium text-gray-400">{note}</p>
+                  <p className="text-[10px] font-medium text-gray-400">{note}</p>
                 </div>
               ))}
             </div>
