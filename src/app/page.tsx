@@ -14,9 +14,21 @@ import {
 // ── SEO Metadata ───────────────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: 'Wingstop Nutrition Calculator – Calories & Macros for Every Item (2026)',
-  description: 'Use the Wingstop Nutrition Calculator to track exact calories, protein, carbs, and fat for wings, fries, ranch, and every menu item. 100% free, mobile-friendly.',
+  title: 'Wingstop Nutrition Calculator | Check Calories & Macros',
+  description: 'Use the Wingstop nutrition calculator to check calories, macros, and full menu nutrition facts for your favorite wings and sides.',
   alternates: { canonical: 'https://wingstopcaloriecalculator.us' },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   keywords: [
     'wingstop nutrition calculator',
     'wingstop calories',

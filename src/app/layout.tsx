@@ -9,18 +9,22 @@ const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit', display: 
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://wingstopcaloriecalculator.us'),
-  title: 'Wingstop Nutrition Calculator – Track Calories & Macros Instantly',
-  description: 'Use this Wingstop nutrition calculator to check Wingstop calories, macros, fries, ranch, and wings before you order. Fast, simple, and easy to use.',
+  title: 'Wingstop Nutrition Calculator | Check Calories & Macros',
+  description: 'Use the Wingstop nutrition calculator to check calories, macros, and full menu nutrition facts for your favorite wings and sides.',
   openGraph: {
-    title: 'Wingstop Nutrition Calculator',
-    description: 'Track complete macros, calories, allergens, and diet goals for every Wingstop menu item.',
+    title: 'Wingstop Nutrition Calculator | Check Calories & Macros',
+    description: 'Use the Wingstop nutrition calculator to check calories, macros, and full menu nutrition facts for your favorite wings and sides.',
     type: 'website',
     url: 'https://wingstopcaloriecalculator.us',
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
   twitter: {
     card: 'summary_large_image',
-    title: 'Wingstop Nutrition Calculator',
-    description: 'Track complete macros, calories, allergens, and diet goals for every Wingstop menu item.',
+    title: 'Wingstop Nutrition Calculator | Check Calories & Macros',
+    description: 'Use the Wingstop nutrition calculator to check calories, macros, and full menu nutrition facts for your favorite wings and sides.',
   }
 }
 
