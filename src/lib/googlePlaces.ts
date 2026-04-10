@@ -34,7 +34,7 @@ export async function getGooglePlaceDetails(storeName: string, state: string, ci
     const query = encodeURIComponent(`${storeName} ${address} ${city} ${state}`);
     const findUrl = `https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${query}&inputtype=textquery&fields=place_id&key=${API_KEY}`;
     
-    const findRes = await fetch(findUrl);
+    const findRes = await fetch(findUrl, { next: { revalidate: 3600 } });
     const findData = await findRes.json();
 
     if (!findData.candidates || findData.candidates.length === 0) {
@@ -46,7 +46,7 @@ export async function getGooglePlaceDetails(storeName: string, state: string, ci
     // 2. Fetch the detailed reviews, ratings, and photos using the place_id via Place Details API
     const detailsUrl = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,user_ratings_total,reviews,photos&key=${API_KEY}`;
     
-    const detailsRes = await fetch(detailsUrl);
+    const detailsRes = await fetch(detailsUrl, { next: { revalidate: 3600 } });
     const detailsData = await detailsRes.json();
 
     if (detailsData.status !== 'OK' || !detailsData.result) {
