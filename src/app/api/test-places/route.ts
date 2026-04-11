@@ -5,6 +5,8 @@ import { loadLocations } from '@/lib/locations';
 
 const GOOGLE_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY;
 
+export const dynamic = 'force-dynamic'; // Prevents Vercel build from crashing by avoiding compile-time execution
+
 // Delay function to avoid hitting Rate Limits
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
