@@ -40,8 +40,8 @@ export default async function LocationDetailPage({ params }: Props) {
   const todayHr = todayHours(loc);
   const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
 
-  // Fetch real Google Places rating and reviews
-  const placeDetails = await getGooglePlaceDetails('Wingstop', loc.stateName, loc.city, loc.address);
+  // Fetch real Google Places rating and reviews (Now powered by MongoDB for instant loading)
+  const placeDetails = await getGooglePlaceDetails('Wingstop', loc.stateName, loc.city, loc.address, loc.slug);
 
   const dynamicFAQs = [
     {

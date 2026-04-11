@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import React from 'react'
+import Script from 'next/script'
 import './globals.css'
 import { Outfit } from 'next/font/google'
 import Header from '@/components/Header'
@@ -36,6 +37,28 @@ export default function RootLayout({
   return (
     <html lang="en" className={`scroll-smooth ${outfit.variable}`}>
       <body className={outfit.className}>
+        {/* Google Analytics */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-61S8KJ7R61" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-61S8KJ7R61');
+          `}
+        </Script>
+
+        {/* Microsoft Clarity */}
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "wa15sb8dr9");
+          `}
+        </Script>
+
         <Header />
         <main>{children}</main>
         <Footer />
