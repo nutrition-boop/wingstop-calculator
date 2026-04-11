@@ -269,13 +269,7 @@ export default async function LocationDetailPage({ params }: Props) {
               <PopularTimes />
             </div>
 
-            {/* Store Photos */}
-            {placeDetails?.photoUrls && placeDetails.photoUrls.length > 0 && (
-              <div className="lg:col-span-2 order-6">
-                <StorePhotos photos={placeDetails.photoUrls} />
-              </div>
-            )}
-
+            {/* Store Photos Removed to prevent frontend API quota usage */}
             {/* Reviews */}
             <div className="bg-white rounded-[2rem] p-8 sm:p-12 border border-gray-100 shadow-sm lg:col-span-2 order-7">
               <div className="flex items-center justify-between mb-10 pb-4 border-b border-gray-50">
