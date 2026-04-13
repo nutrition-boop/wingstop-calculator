@@ -24,6 +24,7 @@ function validateReview(text: string, name: string): { ok: boolean; reason?: str
 
 export async function POST(request: Request) {
   try {
+    await dbConnect();
     const body = await request.json();
     const { storeSlug, name, rating, text } = body;
 
