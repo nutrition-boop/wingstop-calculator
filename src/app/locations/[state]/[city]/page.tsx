@@ -14,9 +14,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const cityName = cityLocs[0].city;
     const stateCode = cityLocs[0].state;
     const locationCount = cityLocs.length;
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://wingstopcaloriecalculator.us';
+    const canonicalPath = `/locations/${params.state.toLowerCase()}/${params.city.toLowerCase()}`;
+
     return {
         title: `Wingstop in ${cityName}, ${stateCode} | Locations List & Hours`,
         description: `Find the nearest Wingstop in ${cityName}, ${stateCode}. View store hours, phone numbers, and exact addresses for all ${locationCount} locations.`,
+        alternates: {
+            canonical: `${baseUrl}${canonicalPath}`,
+        },
     };
 }
 

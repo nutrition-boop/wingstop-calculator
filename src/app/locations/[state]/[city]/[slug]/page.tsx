@@ -22,10 +22,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const streetAddress = loc.address ? loc.address.split(',')[0] : '';
   const cityName = loc.city;
   const stateCode = loc.state;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://wingstopcaloriecalculator.us';
+  const canonicalPath = `/locations/${params.state}/${params.city}/${params.slug}`;
 
   return {
-    title: `Wingstop on ${streetAddress} (${cityName}) | Store Info`,
-    description: `Wingstop at ${streetAddress} in ${cityName}, ${stateCode}. Complete Store info, menu, hours, and get store directions easily.`,
+    title: `Wingstop on ${streetAddress} in ${cityName}, ${stateCode} | Store Info`,
+    description: `Wingstop location at ${loc.address} in ${cityName}, ${stateCode}. View store hours, menu, phone number, and easily get directions to this ${cityName} restaurant.`,
+    alternates: {
+      canonical: `${baseUrl}${canonicalPath}`,
+    },
   };
 }
 

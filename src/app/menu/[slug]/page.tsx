@@ -190,9 +190,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const title = seoContent?.metaTitle || `${cfg.label} | Wingstop Menu With Prices & Nutrition`;
     const description = seoContent?.metaDescription || cfg.description;
     
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://wingstopcaloriecalculator.us';
+    const canonicalPath = `/menu/${params.slug}`;
+
     return {
       title,
       description,
+      alternates: {
+        canonical: `${baseUrl}${canonicalPath}`,
+      },
       openGraph: {
         title,
         description,
@@ -207,12 +213,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const title = `Wingstop ${item.name} Calories, Price & Nutrition Facts 2026`;
   const description = `Wingstop ${item.name} contain about ${item.calories} calories and are priced around $${item.price.toFixed(2)}. Check full nutrition facts, allergen details, and compare with other items.`;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://wingstopcaloriecalculator.us';
+  const canonicalPath = `/menu/${params.slug}`;
 
   return {
     title,
     description,
     openGraph: { title, description, type: 'article' },
-    alternates: { canonical: `/menu/${params.slug}` }
+    alternates: { 
+      canonical: `${baseUrl}${canonicalPath}` 
+    }
   };
 }
 

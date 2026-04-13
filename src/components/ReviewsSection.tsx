@@ -28,6 +28,9 @@ function ReviewCard({ review, isNew = false }: { review: Review; isNew?: boolean
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
       className="group pb-10 border-b border-gray-50 last:border-0 last:pb-0"
+      itemProp="review"
+      itemScope
+      itemType="https://schema.org/Review"
     >
       <div className="flex items-start gap-4 mb-4">
         {review.profile_photo_url ? (
@@ -40,25 +43,31 @@ function ReviewCard({ review, isNew = false }: { review: Review; isNew?: boolean
         <div className="flex-1">
           <div className="flex items-center justify-between gap-4 mb-1 flex-wrap">
             <div className="flex items-center gap-2">
-              <p className="font-black text-sm text-gray-900 uppercase tracking-wide">{review.author_name}</p>
+              <p className="font-black text-sm text-gray-900 uppercase tracking-wide" itemProp="author">
+                {review.author_name}
+              </p>
               {review.source === 'user' && (
                 <span className="text-[9px] font-black uppercase tracking-widest bg-[#006938]/10 text-[#006938] px-2 py-0.5 rounded-full">
                   Verified Visit
                 </span>
               )}
             </div>
-            <span className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter shrink-0">
+            <span className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter shrink-0" itemProp="datePublished">
               {review.relative_time_description}
             </span>
           </div>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1" itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
+            <meta itemProp="ratingValue" content={review.rating.toString()} />
+            <meta itemProp="bestRating" content="5" />
             {[...Array(5)].map((_, j) => (
               <Star key={j} size={12} className={j < review.rating ? 'fill-[#FDB913] text-[#FDB913]' : 'fill-gray-100 text-gray-100'} />
             ))}
           </div>
         </div>
       </div>
-      <p className="text-gray-600 text-sm leading-relaxed font-medium italic">"{review.text}"</p>
+      <p className="text-gray-600 text-sm leading-relaxed font-medium italic" itemProp="reviewBody">
+        "{review.text}"
+      </p>
     </motion.div>
   );
 }

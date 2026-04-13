@@ -7,6 +7,9 @@ import ClientStateList from './ClientStateList';
 export const metadata: Metadata = {
   title: 'Wingstop Near Me | Find All Wingstop Locations In USA (2026)',
   description: 'Find all Wingstop locations across the United States. Browse by state and city to find the nearest Wingstop near you, along with store hours, menu, and contact details.',
+  alternates: {
+    canonical: 'https://wingstopcaloriecalculator.us/locations',
+  },
   openGraph: {
     title: 'Wingstop Near Me | Find All Wingstop Locations In USA (2026)',
     description: 'Find all Wingstop locations across the United States. Browse by state and city to find the nearest Wingstop near you, along with store hours, menu, and contact details.',
