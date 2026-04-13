@@ -9,6 +9,7 @@ const LocationDataSchema = new mongoose.Schema(
     place_id: { type: String },
     reviews: { type: Array, default: [] },
     photos: { type: Array, default: [] },
+    userReviews: { type: Array, default: [] },
   },
   { timestamps: true }
 );

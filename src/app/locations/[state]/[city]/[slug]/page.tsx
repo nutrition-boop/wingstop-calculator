@@ -9,6 +9,8 @@ import PopularTimes from '@/components/PopularTimes';
 import NearestLocationBanner from '@/components/NearestLocationBanner';
 import StorePhotos from '@/components/StorePhotos';
 import FAQAccordion from '@/components/FAQAccordion';
+import WriteReview from '@/components/WriteReview';
+import ReviewsSection from '@/components/ReviewsSection';
 
 interface Props { params: { state: string; city: string; slug: string } }
 
@@ -269,49 +271,23 @@ export default async function LocationDetailPage({ params }: Props) {
               <PopularTimes />
             </div>
 
-            {/* Store Photos Removed to prevent frontend API quota usage */}
-            {/* Reviews */}
-            <div className="bg-white rounded-[2rem] p-8 sm:p-12 border border-gray-100 shadow-sm lg:col-span-2 order-7">
-              <div className="flex items-center justify-between mb-10 pb-4 border-b border-gray-50">
-                 <h3 className="text-2xl font-black uppercase tracking-tight text-gray-900" style={{ fontFamily: "'Bebas Neue', 'Outfit', sans-serif" }}>Inside the Flavor</h3>
-                 <div className="flex items-center gap-2 px-3 py-1 bg-green-50 text-[#006938] rounded-full text-[10px] font-black uppercase tracking-widest">
-                   Google Community
-                 </div>
-              </div>
-              
-              {placeDetails?.reviews && placeDetails.reviews.length > 0 ? (
-                <div className="space-y-10">
-                  {placeDetails.reviews.slice(0, 5).map((review, i) => (
-                    <div key={i} className="group pb-10 border-b border-gray-50 last:border-0 last:pb-0">
-                      <div className="flex items-start gap-4 mb-4">
-                         {review.profile_photo_url ? (
-                           <img src={review.profile_photo_url} alt={review.author_name} className="w-12 h-12 rounded-2xl shadow-sm" />
-                         ) : (
-                           <div className="w-12 h-12 rounded-2xl bg-gray-50 flex items-center justify-center text-gray-300"><User size={24}/></div>
-                         )}
-                         <div className="flex-1">
-                           <div className="flex items-center justify-between gap-4 mb-1">
-                             <p className="font-black text-sm text-gray-900 uppercase tracking-wide">{review.author_name}</p>
-                             <span className="text-[10px] text-gray-400 font-bold uppercase tracking-tighter">{review.relative_time_description}</span>
-                           </div>
-                           <div className="flex items-center gap-1">
-                             {[...Array(5)].map((_, j) => (
-                               <Star key={j} size={12} className={j < review.rating ? 'fill-[#FDB913] text-[#FDB913]' : 'fill-gray-100 text-gray-100'} />
-                             ))}
-                           </div>
-                         </div>
-                      </div>
-                      <p className="text-gray-600 text-sm leading-relaxed font-medium italic">"{review.text}"</p>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-10 grayscale opacity-40">
-                   <Star size={48} className="mx-auto text-gray-200 mb-4" />
-                   <p className="text-sm font-black uppercase tracking-widest text-gray-400">Flavor insights loading...</p>
-                </div>
-              )}
-            </div>
+            {/* Store Photos */}
+            <StorePhotos 
+               photos={placeDetails?.photoUrls || []} 
+               city={loc.city} 
+               state={loc.stateName} 
+               address={loc.address || ''} 
+            />
+
+
+            {/* Reviews + Write Review */}
+            <ReviewsSection
+              googleReviews={placeDetails?.reviews || []}
+              userReviews={(placeDetails as any)?.userReviews || []}
+              storeName={loc.name}
+              storeSlug={loc.slug}
+            />
+
 
             {/* FAQs */}
             <div className="bg-white rounded-[2rem] p-8 sm:p-12 border border-gray-100 shadow-sm lg:col-span-2 order-8">

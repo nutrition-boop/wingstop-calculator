@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate:photos": "tsx src/scripts/migratePhotos.ts",
+    "cache:batch1": "tsx src/scripts/cacheAllPlaces.ts 1",
+    "cache:batch2": "tsx src/scripts/cacheAllPlaces.ts 2",
+    "cache:batch3": "tsx src/scripts/cacheAllPlaces.ts 3",
+    "cache:batch4": "tsx src/scripts/cacheAllPlaces.ts 4"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
@@ -17,7 +22,8 @@
     "@tiptap/react": "^3.22.3",
     "@tiptap/starter-kit": "^3.22.3",
     "bcryptjs": "^3.0.3",
-    "dotenv": "^17.4.0",
+    "cloudinary": "^2.9.0",
+    "dotenv": "^17.4.2",
     "framer-motion": "^12.38.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.7.0",
@@ -28,6 +34,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-leaflet": "^5.0.0",
+    "tsx": "^4.21.0",
     "zustand": "^4.4.0"
   },
   "devDependencies": {
