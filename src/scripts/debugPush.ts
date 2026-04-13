@@ -8,7 +8,9 @@ const SLUG = 'wingstop-1650-phoenix-az-85023';
 
 async function checkDB() {
   await mongoose.connect(process.env.MONGODB_URI as string);
-  const col = mongoose.connection.db.collection('locationdatas');
+  const db = mongoose.connection.db;
+  if (!db) throw new Error("Database not connected");
+  const col = db.collection('locationdatas');
   const doc = await col.findOne({ storeSlug: SLUG }) as any;
   console.log('DB userReviews count:', doc?.userReviews?.length ?? 0);
   await mongoose.disconnect();
