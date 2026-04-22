@@ -16,7 +16,8 @@ export const metadata: Metadata = {
   }
 };
 
-export const dynamic = 'force-dynamic';
+// ISR: regenerate every 1 hour
+export const revalidate = 3600;
 
 export default function LocationsIndexPage() {
   const locations = loadLocations();

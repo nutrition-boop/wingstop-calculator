@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { loadLocations, findLocationsByState, groupByCity, googleMapsUrl } from '@/lib/locations';
+import { loadLocations, findLocationsByState, groupByState, groupByCity, googleMapsUrl } from '@/lib/locations';
 import { MapPin, ChevronRight, Building2, ArrowRight } from 'lucide-react';
 import ClientGeolocationButton from '@/components/ClientGeolocationButton';
 
@@ -25,7 +25,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export const dynamic = 'force-dynamic';
+// ISR: regenerate every 1 hour
+export const revalidate = 3600;
+
+// Pre-generate all state pages at build time
+export async function generateStaticParams() {
+  const locations = loadLocations();
+  const states = groupByState(locations);
+  return states.map(s => ({ state: s.stateSlug }));
+}
 
 export default function StatePage({ params }: Props) {
   const allLocs = loadLocations();

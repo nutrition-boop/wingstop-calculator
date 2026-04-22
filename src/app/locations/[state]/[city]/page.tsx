@@ -26,7 +26,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
 }
 
-export const dynamic = 'force-dynamic';
+// ISR: regenerate every 1 hour
+export const revalidate = 3600;
+
+// Pre-generate all state+city pages at build time
+export async function generateStaticParams() {
+  const locations = loadLocations();
+  const params: { state: string; city: string }[] = [];
+  const seen = new Set<string>();
+  for (const loc of locations) {
+    const stateSlug = loc.stateName.toLowerCase().replace(/\s+/g, '-');
+    const key = `${stateSlug}/${loc.citySlug}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      params.push({ state: stateSlug, city: loc.citySlug });
+    }
+  }
+  return params;
+}
 
 export default async function CityLocationsPage({ params }: Props) {
     const allLocs = loadLocations();

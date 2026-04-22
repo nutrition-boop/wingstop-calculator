@@ -42,14 +42,18 @@ export interface CityGroup {
   locationCount: number;
 }
 
-// ── Load data ────────────────────────────────────────────────────────────────
+// ── Load data (with in-memory cache) ─────────────────────────────────────────
 
 const FILE = path.join(process.cwd(), 'locations.json');
 
+let _cachedLocations: Location[] | null = null;
+
 export function loadLocations(): Location[] {
+  if (_cachedLocations) return _cachedLocations;
   if (!fs.existsSync(FILE)) return [];
   try {
-    return JSON.parse(fs.readFileSync(FILE, 'utf8')) as Location[];
+    _cachedLocations = JSON.parse(fs.readFileSync(FILE, 'utf8')) as Location[];
+    return _cachedLocations;
   } catch {
     return [];
   }

@@ -34,7 +34,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export const dynamic = 'force-dynamic';
+// ISR: regenerate every 1 hour
+export const revalidate = 3600;
+
+// Allow pages not in generateStaticParams to render on-demand
+export const dynamicParams = true;
+
+// Pre-generate top 200 store pages at build time (rest generated on-demand via ISR)
+export async function generateStaticParams() {
+  const locations = loadLocations();
+  return locations.slice(0, 200).map(loc => ({
+    state: loc.stateName.toLowerCase().replace(/\s+/g, '-'),
+    city: loc.citySlug,
+    slug: loc.slug,
+  }));
+}
 
 export default async function LocationDetailPage({ params }: Props) {
   const allLocs = loadLocations();
