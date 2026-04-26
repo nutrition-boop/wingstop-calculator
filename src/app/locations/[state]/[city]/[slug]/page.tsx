@@ -378,7 +378,7 @@ export default async function LocationDetailPage({ params }: Props) {
 
             <div className="bg-white rounded-[2rem] border border-gray-100 shadow-xl overflow-hidden h-[400px] relative group ring-4 ring-white">
               <iframe
-                src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY}&q=${loc.address ? encodeURIComponent(`${loc.address}, ${loc.city}, ${loc.state} ${loc.zip}`) : `${loc.lat},${loc.lng}`}`}
+                src={`https://maps.google.com/maps?q=${loc.address ? encodeURIComponent(`${loc.address}, ${loc.city}, ${loc.state} ${loc.zip}`) : `${loc.lat},${loc.lng}`}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
                 className="w-full h-full border-0 grayscale group-hover:grayscale-0 transition-all duration-700"
                 allowFullScreen
                 loading="lazy"

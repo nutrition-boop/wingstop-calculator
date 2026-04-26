@@ -65,19 +65,25 @@ export default function CompareItemsSection({ baseItem }: CompareItemsSectionPro
     <div className="mt-16">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full flex items-center justify-between p-8 bg-white rounded-[2rem] border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] group hover:border-primary/30 transition-all text-left"
+        className="w-full flex items-center justify-between gap-4 p-5 sm:p-8 bg-white rounded-[1.5rem] sm:rounded-[2rem] border-2 border-transparent shadow-[0_10px_40px_rgba(0,0,0,0.04)] group hover:-translate-y-1 hover:border-[#006938]/20 hover:shadow-[0_20px_40px_rgba(0,105,56,0.12)] transition-all duration-500 text-left relative overflow-hidden"
       >
-        <div className="flex items-center space-x-6">
-          <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 ${isExpanded ? 'bg-primary text-white rotate-180' : 'bg-primary/10 text-primary'}`}>
-            <ArrowRightLeft size={24} strokeWidth={2.5} />
+        {/* Sweeping hover gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#006938]/0 via-[#006938]/5 to-[#006938]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+        
+        <div className="flex items-center gap-4 sm:gap-6 relative z-10 flex-1">
+          <div className={`w-12 h-12 sm:w-16 sm:h-16 shrink-0 rounded-xl sm:rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 shadow-sm ${isExpanded ? 'bg-[#006938] text-white rotate-180 shadow-[#006938]/30' : 'bg-[#006938]/10 text-[#006938] group-hover:bg-[#006938]/20'}`}>
+            <ArrowRightLeft strokeWidth={2.5} className="w-5 h-5 sm:w-7 sm:h-7" />
           </div>
           <div>
-            <h2 className="text-2xl font-black text-dark uppercase tracking-tight">Compare This Item</h2>
-            <p className="text-slate-500 font-medium text-sm">Select another menu item to see a side-by-side nutrition breakdown.</p>
+            <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+              <h2 className="text-lg sm:text-2xl font-black text-slate-900 uppercase tracking-tight group-hover:text-[#006938] transition-colors leading-none">Compare This Item</h2>
+              {!isExpanded && <span className="inline-flex shrink-0 items-center justify-center px-2 py-0.5 rounded-full bg-[#FDB913]/20 text-[#FDB913] border border-[#FDB913]/30 text-[9px] font-black uppercase tracking-widest animate-pulse">Try It</span>}
+            </div>
+            <p className="text-slate-500 font-medium text-[11px] sm:text-sm leading-snug max-w-sm sm:max-w-none">Select another menu item to see a side-by-side nutrition breakdown.</p>
           </div>
         </div>
-        <div className={`w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-primary/5 group-hover:text-primary transition-all ${isExpanded ? 'rotate-180' : ''}`}>
-          <ChevronDown size={20} />
+        <div className={`w-8 h-8 sm:w-12 sm:h-12 shrink-0 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-[#006938]/10 group-hover:text-[#006938] transition-all relative z-10 ${isExpanded ? 'rotate-180' : ''}`}>
+          <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
         </div>
       </button>
 

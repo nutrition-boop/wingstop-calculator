@@ -591,34 +591,73 @@ function ItemView({ item }: { item: MenuItem }) {
             <Breadcrumb items={breadcrumbItems} />
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <span className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full ${cat.bg} ${cat.color} text-xs font-black uppercase tracking-widest`}>
-                  <Icon size={14} className="stroke-[3]" /> {cat.label}
-                </span>
-                <span className="px-3 py-1.5 bg-white/80 border border-slate-100 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-500">
-                  #{item.id}
-                </span>
+            <div className="flex flex-col">
+              {/* 1. Heading & Badges */}
+              <div className="order-1">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full ${cat.bg} ${cat.color} text-xs font-black uppercase tracking-widest`}>
+                    <Icon size={14} className="stroke-[3]" /> {cat.label}
+                  </span>
+                  <span className="px-3 py-1.5 bg-white/80 border border-slate-100 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-500">
+                    #{item.id}
+                  </span>
+                </div>
+                <h1 className="text-5xl lg:text-7xl font-black text-slate-900 mb-6 tracking-tight italic uppercase leading-none">
+                  Wingstop {item.name}
+                </h1>
               </div>
-              <h1 className="text-5xl lg:text-7xl font-black text-slate-900 mb-6 tracking-tight italic uppercase leading-none">
-                Wingstop {item.name}
-              </h1>
-              <p className="text-xl text-slate-600 mb-10 leading-relaxed max-w-xl font-medium">
+
+              {/* 2. Mobile Image */}
+              <div className="order-2 lg:hidden relative group my-8">
+                <div className="absolute inset-0 bg-primary/10 blur-[60px] rounded-full scale-75 group-hover:scale-95 transition-transform duration-700" />
+                <div className="relative aspect-square w-full max-w-[400px] mx-auto">
+                  <Image
+                    src={item.image || '/images/menu/wings.png'}
+                    alt={item.name}
+                    fill
+                    className="object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.12)] group-hover:scale-105 transition-all duration-700 ease-out"
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    priority
+                  />
+                </div>
+              </div>
+
+              {/* 4. Description (Order 4 on Mobile, Order 2 on Desktop) */}
+              <p className="order-4 lg:order-2 text-xl text-slate-600 mt-8 lg:mt-0 mb-4 lg:mb-10 leading-relaxed max-w-xl font-medium">
                 Wingstop {item.name} contain about {item.calories} calories and are priced around ${item.price.toFixed(2)}. Check full nutrition facts, allergen details, and compare with other items.
               </p>
-              <div className="flex items-center gap-12 p-8 bg-white/50 backdrop-blur-sm rounded-3xl border border-white/40 shadow-xl shadow-slate-900/5">
-                <div>
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">Serving</p>
-                  <p className="text-2xl font-black text-slate-900 leading-none">{item.servingSize || 'Standard'}</p>
-                </div>
-                <div className="w-px h-12 bg-slate-200" />
-                <div>
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">Est. Price</p>
-                  <p className="text-2xl font-black text-slate-900 leading-none">${item.price.toFixed(2)}</p>
+
+              {/* 3. Redesign Card (Order 3 on both) */}
+              <div className="order-3 lg:order-3">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-12 p-6 sm:p-8 bg-white/60 backdrop-blur-md rounded-3xl border border-white/60 shadow-2xl shadow-slate-900/5 relative overflow-hidden group/card">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+                  <div className="flex-1 relative z-10">
+                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 flex items-center gap-1.5">
+                      <Users size={12} className="text-primary" /> Serving
+                    </p>
+                    <p className="text-lg sm:text-2xl font-black text-slate-900 leading-tight">
+                      {item.servingSize || 'Standard'}
+                    </p>
+                  </div>
+                  <div className="hidden sm:block w-px h-16 bg-gradient-to-b from-transparent via-slate-200 to-transparent relative z-10" />
+                  <div className="sm:hidden w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent relative z-10" />
+                  <div className="shrink-0 relative z-10">
+                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2.5 flex items-center gap-1.5">
+                      <Zap size={12} className="text-amber-500" /> Est. Price
+                    </p>
+                    <div className="flex items-start gap-1">
+                      <span className="text-lg font-black text-slate-400 mt-1">$</span>
+                      <p className="text-4xl sm:text-5xl font-black text-slate-900 leading-none tracking-tight">
+                        {item.price.toFixed(2)}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="relative group">
+
+            {/* Desktop Image */}
+            <div className="hidden lg:block relative group">
               <div className="absolute inset-0 bg-primary/10 blur-[100px] rounded-full scale-75 group-hover:scale-95 transition-transform duration-700" />
               <div className="relative aspect-square w-full max-w-[550px] mx-auto">
                 <Image
@@ -635,31 +674,48 @@ function ItemView({ item }: { item: MenuItem }) {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-6 -mt-16 relative z-30 pb-24">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { label: 'Calories', value: item.calories, unit: 'kcal', icon: Zap, iconBg: 'bg-[#006938]', lightBg: 'bg-emerald-50' },
-            { label: 'Protein', value: item.protein, unit: 'grams', icon: ShieldCheck, iconBg: 'bg-blue-600', lightBg: 'bg-blue-50' },
-            { label: 'Carbs', value: item.carbs, unit: 'grams', icon: Info, iconBg: 'bg-amber-600', lightBg: 'bg-amber-50' },
-            { label: 'Fats', value: item.fat, unit: 'grams', icon: Flame, iconBg: 'bg-rose-600', lightBg: 'bg-rose-50' },
-          ].map((stat) => (
-            <div key={stat.label} className="bg-white rounded-[2.5rem] p-8 shadow-2xl shadow-slate-900/5 border border-white hover:-translate-y-2 transition-all duration-500 overflow-hidden relative group">
-              <div className={`absolute -top-12 -right-12 w-32 h-32 rounded-full ${stat.lightBg} opacity-60 blur-3xl group-hover:scale-150 transition-transform duration-700`} />
-              <div className={`w-12 h-12 rounded-2xl ${stat.iconBg} flex items-center justify-center text-white mb-6 shadow-lg shadow-black/10 relative z-10`}>
-                <stat.icon size={22} strokeWidth={2.5} />
-              </div>
-              <div className="flex items-baseline gap-2 relative z-10">
-                <span className="text-5xl font-black text-slate-900 leading-none">{stat.value}</span>
-                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">{stat.unit}</span>
-              </div>
-              <p className="mt-2 text-[10px] font-black text-slate-400 capitalize tracking-[0.2em] relative z-10">{stat.label}</p>
-            </div>
-          ))}
+      <div className="max-w-7xl mx-auto px-6 -mt-8 sm:-mt-16 relative z-30 pb-24">
+        <div className="bg-[#006938] rounded-[2.5rem] sm:rounded-[3rem] border border-white/10 shadow-2xl shadow-[#006938]/20 overflow-hidden relative">
+           {/* Decorative Lighting */}
+           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 blur-[100px] rounded-full pointer-events-none -mt-20 -mr-20" />
+           <div className="absolute bottom-0 left-0 w-96 h-96 bg-black/20 blur-[100px] rounded-full pointer-events-none -mb-20 -ml-20" />
+           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#006938] via-[#FDB913] to-[#006938] opacity-50" />
+           
+           <div className="grid grid-cols-2 lg:grid-cols-4 relative z-10">
+              {[
+                { label: 'Calories', value: item.calories, unit: 'kcal' },
+                { label: 'Protein', value: item.protein, unit: 'grams' },
+                { label: 'Carbs', value: item.carbs, unit: 'grams' },
+                { label: 'Fats', value: item.fat, unit: 'grams' },
+              ].map((stat, i) => (
+                <div 
+                  key={stat.label} 
+                  className={`p-8 sm:p-12 flex flex-col items-center justify-center text-center relative group transition-colors duration-500 
+                    ${i === 0 ? 'border-b border-r border-white/10 lg:border-b-0' : ''}
+                    ${i === 1 ? 'border-b border-white/10 lg:border-b-0 lg:border-r' : ''}
+                    ${i === 2 ? 'border-r border-white/10' : ''}
+                  `}
+                >
+                   <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                   <p className="text-[10px] sm:text-xs font-black text-white/50 group-hover:text-[#FDB913] uppercase tracking-[0.3em] mb-2 sm:mb-3 transition-colors duration-300 relative z-10">
+                     {stat.label}
+                   </p>
+                   <div className="flex items-baseline gap-1.5 relative z-10">
+                     <span className="text-5xl sm:text-7xl font-black tracking-tight leading-none text-white">
+                       {stat.value}
+                     </span>
+                     <span className="text-[10px] sm:text-xs font-black text-white/30 uppercase tracking-widest">
+                       {stat.unit}
+                     </span>
+                   </div>
+                </div>
+              ))}
+           </div>
         </div>
 
         <div className="mt-20 grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-12">
-            <div className="bg-white rounded-[3rem] p-10 sm:p-14 shadow-sm border border-slate-100">
+            <div className="bg-white rounded-[2rem] sm:rounded-[3rem] p-6 sm:p-10 lg:p-14 shadow-sm border border-slate-100">
                <h2 className="text-3xl font-black text-slate-900 mb-8 flex items-center gap-4">
                 <span className="w-2 h-10 bg-primary rounded-full" /> Full Analysis
                </h2>
@@ -677,31 +733,31 @@ function ItemView({ item }: { item: MenuItem }) {
                </div>
                
                {/* Dietary Notifications Section */}
-               <div className="mt-12 p-8 bg-[#006938] rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden group hover:scale-[1.01] transition-all duration-500">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 blur-[100px] rounded-full -mr-32 -mt-32 group-hover:bg-white/10 transition-colors duration-700" />
+               <div className="mt-8 sm:mt-12 p-6 sm:p-10 bg-[#006938] rounded-[2rem] sm:rounded-[3rem] border border-white/10 shadow-2xl relative overflow-hidden group hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,105,56,0.3)] transition-all duration-500">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 blur-[100px] rounded-full -mr-32 -mt-32 group-hover:bg-[#FDB913]/15 transition-colors duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
                   
-                  <div className="flex items-center gap-4 mb-8 relative z-10">
-                     <div className="w-1.5 h-8 bg-[#FDB913] rounded-full shadow-[0_0_15px_rgba(253,185,19,0.5)]" />
-                     <h3 className="text-2xl font-black text-white italic uppercase tracking-tight">Dietary notifications</h3>
+                  <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8 relative z-10">
+                     <div className="w-1.5 h-6 sm:h-8 bg-[#FDB913] rounded-full shadow-[0_0_15px_rgba(253,185,19,0.5)] group-hover:scale-y-125 transition-transform duration-500" />
+                     <h3 className="text-xl sm:text-2xl font-black text-white italic uppercase tracking-tight">Dietary notifications</h3>
                   </div>
 
-                  <div className="bg-white/10 backdrop-blur-md border border-white/10 rounded-3xl p-6 mb-8 relative z-10 shadow-inner">
-                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                        <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-2xl shrink-0 group-hover:rotate-6 transition-transform">
-                           <AlertTriangle size={28} className="text-[#006938]" />
+                  <div className="bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-8 mb-6 sm:mb-8 relative z-10 shadow-inner group/box hover:bg-white/20 transition-colors duration-500">
+                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center shadow-2xl shrink-0 group-hover/box:scale-110 group-hover/box:rotate-12 transition-all duration-500">
+                           <AlertTriangle size={24} className="text-[#006938] sm:w-8 sm:h-8" />
                         </div>
                         <div>
-                           <p className="text-white/80 font-black uppercase text-xs tracking-widest mb-3">Allergens & ingredients</p>
+                           <p className="text-white/80 font-black uppercase text-[10px] sm:text-xs tracking-widest mb-2 sm:mb-3 group-hover/box:text-white transition-colors duration-300">Allergens & ingredients</p>
                            <div className="flex flex-wrap gap-2">
                               {activeAllergens.length > 0 ? (
                                 activeAllergens.map(allergen => (
-                                  <span key={allergen} className="px-3 py-1.5 border border-[#FDB913]/30 rounded-xl text-[10px] font-black text-[#FDB913] uppercase tracking-widest bg-[#FDB913]/5">
+                                  <span key={allergen} className="px-3 py-1.5 border border-[#FDB913]/30 rounded-xl text-[10px] font-black text-[#FDB913] uppercase tracking-widest bg-[#FDB913]/5 group-hover/box:bg-[#FDB913]/20 transition-colors duration-300">
                                     {allergen}
                                   </span>
                                 ))
                               ) : (
-                                <span className="px-3 py-1.5 border border-emerald-400/30 rounded-xl text-[10px] font-black text-emerald-400 uppercase tracking-widest bg-emerald-400/5">
+                                <span className="px-3 py-1.5 border border-emerald-400/30 rounded-xl text-[10px] font-black text-emerald-400 uppercase tracking-widest bg-emerald-400/5 group-hover/box:bg-emerald-400/20 transition-colors duration-300">
                                   No Common Allergens
                                 </span>
                               )}
@@ -710,37 +766,62 @@ function ItemView({ item }: { item: MenuItem }) {
                      </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
-                     <Link href="/allergen-menu" className="flex items-center justify-between p-5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl group/link hover:bg-white/10 transition-all duration-300">
-                        <span className="text-sm font-bold text-white">Full Allergen Menu</span>
-                        <ArrowUpRight size={18} className="text-white/50 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 relative z-10">
+                     <Link href="/allergen-menu" className="flex items-center justify-between p-4 sm:p-5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl sm:rounded-2xl group/link hover:bg-[#FDB913]/10 hover:border-[#FDB913]/30 hover:shadow-[0_0_20px_rgba(253,185,19,0.15)] transition-all duration-300">
+                        <span className="text-sm font-bold text-white group-hover/link:text-[#FDB913] transition-colors duration-300">Full Allergen Menu</span>
+                        <ArrowUpRight size={18} className="text-white/50 group-hover/link:text-[#FDB913] group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-all duration-300" />
                      </Link>
-                     <Link href="/wingstop-gluten-free" className="flex items-center justify-between p-5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl group/link hover:bg-white/10 transition-all duration-300">
-                        <span className="text-sm font-bold text-white">Gluten Free Menu</span>
-                        <ArrowUpRight size={18} className="text-white/50 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+                     <Link href="/wingstop-gluten-free" className="flex items-center justify-between p-4 sm:p-5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl sm:rounded-2xl group/link hover:bg-[#FDB913]/10 hover:border-[#FDB913]/30 hover:shadow-[0_0_20px_rgba(253,185,19,0.15)] transition-all duration-300">
+                        <span className="text-sm font-bold text-white group-hover/link:text-[#FDB913] transition-colors duration-300">Gluten Free Menu</span>
+                        <ArrowUpRight size={18} className="text-white/50 group-hover/link:text-[#FDB913] group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-all duration-300" />
                      </Link>
                   </div>
                </div>
             </div>
 
-            {/* Nutrition Table */}
-            <div className="space-y-8">
+            {/* Detailed Nutrition Data */}
+            <div className="space-y-6 sm:space-y-8 mt-16 sm:mt-20">
                <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-black text-slate-900 italic uppercase">Detailed Nutrition Data</h2>
-                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Full Breakdown</span>
+                  <h2 className="text-2xl sm:text-3xl font-black text-slate-900 italic uppercase tracking-tight">Detailed Nutrition</h2>
+                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] hidden sm:block">Full Breakdown</span>
                </div>
-               <NutritionTable 
-                 title={`${item.name} Nutrition Facts`}
-                 columns={["Item", "Calories", "Total Fat (g)", "Sodium (mg)", "Carbs (g)", "Protein (g)"]}
-                 data={[{
-                   item: item.name,
-                   calories: item.calories,
-                   total_fat_g: item.fat,
-                   sodium_mg: item.sodium || '-',
-                   total_carbohydrates_g: item.carbs,
-                   protein_g: item.protein
-                 }]}
-               />
+               
+               <div className="bg-white rounded-[1.5rem] sm:rounded-[2rem] border border-slate-100 shadow-xl shadow-slate-900/5 overflow-hidden">
+                  <div className="bg-slate-50/80 border-b border-slate-100 p-5 sm:p-8 flex items-center justify-between">
+                     <h3 className="font-black text-slate-900 uppercase tracking-widest text-[10px] sm:text-xs">
+                        {item.name} Facts
+                     </h3>
+                     <span className="w-8 h-1.5 bg-[#006938] rounded-full" />
+                  </div>
+                  <div className="divide-y divide-slate-100">
+                     {[
+                        { label: 'Calories', value: item.calories, unit: '', dot: 'bg-emerald-500' },
+                        { label: 'Total Fat', value: item.fat, unit: 'g', dot: 'bg-rose-500' },
+                        { label: 'Sodium', value: item.sodium || '-', unit: 'mg', dot: 'bg-slate-400' },
+                        { label: 'Total Carbohydrates', value: item.carbs, unit: 'g', dot: 'bg-amber-500' },
+                        { label: 'Protein', value: item.protein, unit: 'g', dot: 'bg-blue-600' },
+                     ].map((stat) => (
+                        <div key={stat.label} className="flex items-center justify-between p-5 sm:p-6 sm:px-8 hover:bg-slate-50/80 transition-colors duration-300 group">
+                           <div className="flex items-center gap-3 sm:gap-4">
+                              <span className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full ${stat.dot} shadow-sm group-hover:scale-[1.8] transition-transform duration-500`} />
+                              <span className="text-sm sm:text-base font-bold text-slate-600 group-hover:text-slate-900 transition-colors">
+                                 {stat.label}
+                              </span>
+                           </div>
+                           <div className="flex items-baseline gap-1 sm:gap-1.5">
+                              <span className="text-lg sm:text-xl font-black text-slate-900">
+                                 {stat.value}
+                              </span>
+                              {stat.unit && stat.value !== '-' && (
+                                <span className="text-[10px] sm:text-xs font-black text-slate-400 uppercase tracking-widest">
+                                   {stat.unit}
+                                </span>
+                              )}
+                           </div>
+                        </div>
+                     ))}
+                  </div>
+               </div>
             </div>
 
             <CompareItemsSection baseItem={item} />
