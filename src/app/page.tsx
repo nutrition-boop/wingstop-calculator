@@ -236,213 +236,141 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ HOW IT WORKS ═══ */}
-      <section className="py-28 bg-gray-50/50">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/5 border border-primary/10 mb-6">
-              <Zap size={12} className="text-primary" />
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/60">Step by Step</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-gray-900 italic uppercase leading-none mb-4">Steps for the Most Accurate Calorie Count</h2>
-            <p className="text-base text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed">Follow these four steps for a precise Wingstop nutrition total every time.</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* ═══ HOW IT WORKS (ARTICLE STYLE) ═══ */}
+      <section className="py-20 bg-white border-b border-gray-100">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-gray-900 mb-6">How to Calculate Your Wingstop Meal Accurately</h2>
+          <p className="text-lg text-gray-600 font-medium leading-relaxed mb-10">
+            Getting an exact macro and calorie count at Wingstop can be tricky because everything is customized. To get the most precise numbers, follow these four steps when using our calculator:
+          </p>
+          <div className="space-y-8">
             {[
-              { step: '01', icon: Utensils, title: 'Choose Main Item', desc: 'Start with wings, tenders, sandwich, combo, or group pack — each has different calorie profiles.', color: 'from-primary to-emerald-600' },
-              { step: '02', icon: Flame, title: 'Pick a Flavor', desc: 'Lemon Pepper is 30% higher in calories than Atomic. Flavor selection matters more than you think.', color: 'from-orange-500 to-red-600' },
-              { step: '03', icon: Target, title: 'Set Your Goal', desc: 'Select Standard, Keto, Bulk, or Cut mode. The calculator adjusts macro targets automatically.', color: 'from-blue-500 to-indigo-600' },
-              { step: '04', icon: TrendingUp, title: 'Add Sides & Dips', desc: "Ranch alone is 320 kcal. Don't forget fries and dips — they're the silent calorie boosters.", color: 'from-rose-500 to-pink-600' },
-            ].map((s, i) => (
-              <div key={i} className="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden">
-                <div className="absolute top-0 right-0 text-8xl font-black text-gray-50 translate-x-3 -translate-y-3 leading-none pointer-events-none select-none">{s.step}</div>
-                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center text-white mb-6 shadow-lg`}>
-                  <s.icon size={22} />
+              { step: '1', title: 'Choose Your Base Item', desc: 'The foundation of your meal matters. A 10-piece classic bone-in wing order has a very different baseline than a 10-piece boneless or a chicken sandwich. Make sure you select the exact item type you plan to order.' },
+              { step: '2', title: 'Select the Flavor', desc: 'Flavor makes a massive difference. For example, a dry rub like Lemon Pepper is actually higher in calories than a wet sauce like Original Hot because of the oil base. Always input your exact flavor.' },
+              { step: '3', title: 'Account for Sides', desc: 'Fries are the silent calorie boosters. A regular seasoned fry adds about 500 calories to your meal, while a large adds 900. If you are tracking strict macros, you must include your sides.' },
+              { step: '4', title: 'Don\'t Forget the Dips', desc: 'A single standard cup of Wingstop Ranch adds 320 calories and 34g of fat. Blue Cheese adds 330 calories. If you dip, you must track it to maintain an accurate daily count.' },
+            ].map((s) => (
+              <div key={s.step} className="flex gap-5 items-start">
+                <div className="w-10 h-10 rounded-full bg-primary/10 text-primary font-black flex items-center justify-center shrink-0 text-lg border border-primary/20">
+                  {s.step}
                 </div>
-                <h3 className="text-base font-black tracking-tight text-gray-900 mb-2 uppercase">{s.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed font-medium">{s.desc}</p>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{s.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{s.desc}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══ CALORIE INSIGHTS ═══ */}
-      <section className="py-28 bg-white">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/5 border border-primary/10 mb-6">
-              <Zap size={12} className="text-primary" />
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/60">Nutrition Insights</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-gray-900 italic uppercase leading-none mb-4">Which Items Add the Most Calories?</h2>
+      {/* ═══ CALORIE INSIGHTS (ARTICLE STYLE) ═══ */}
+      <section className="py-20 bg-slate-50 border-b border-gray-100">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-gray-900 mb-6">Which Wingstop Items Add the Most Calories?</h2>
+          <div className="prose prose-lg text-gray-600 mb-10 max-w-none">
+            <p>
+              When people blow past their daily calorie limits at Wingstop, it’s rarely because of the wings themselves. The biggest calorie spikes come from the extras that seem harmless.
+            </p>
+            <h3 className="text-xl font-bold text-gray-900 mt-8 mb-3">1. The Fry Trap (500–1070 kcal)</h3>
+            <p>
+              Fries are the biggest variable in a Wingstop order. A regular seasoned fry adds 500 calories, but if you upgrade to a Large Buffalo Ranch Fries, you're adding over 1,000 calories to your meal before you even eat a single wing.
+            </p>
+            <h3 className="text-xl font-bold text-gray-900 mt-8 mb-3">2. The Hidden Cost of Ranch (320 kcal)</h3>
+            <p>
+              Wingstop's house-made ranch is legendary, but at 320 calories per standard cup, it's highly caloric. If you eat two cups of ranch with your meal, you've added 640 calories purely in dipping sauce.
+            </p>
+            <h3 className="text-xl font-bold text-gray-900 mt-8 mb-3">3. Classic vs. Boneless Trade-offs</h3>
+            <p>
+              Many assume boneless wings are healthier. While boneless wings (which are essentially breaded chicken breast pieces) may have slightly fewer calories per piece than classic wings, they contain significantly more carbohydrates due to the breading. If you are on a keto or low-carb diet, classic bone-in wings are the clear winner.
+            </p>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {[
-                { rank: 1, title: 'Portion Size', cal: '↑ 40–80%', Icon: Package, iconColor: 'text-orange-500', bg: 'bg-orange-50', color: 'border-orange-200 bg-orange-50', text: 'Ordering 20 vs 10 wings doubles the calorie count. Always check piece count first.' },
-                { rank: 2, title: 'Seasoned Fries', cal: '500 kcal', Icon: Utensils, iconColor: 'text-yellow-600', bg: 'bg-yellow-50', color: 'border-yellow-200 bg-yellow-50', text: 'A regular serving adds 500 kcal. Large adds 900 kcal. This single side can double a wing order.' },
-                { rank: 3, title: 'Ranch Sauce', cal: '320 kcal', Icon: AlertCircle, iconColor: 'text-rose-500', bg: 'bg-rose-50', color: 'border-rose-200 bg-rose-50', text: 'People treat ranch as "just a dip" — but at 320 kcal per tub, it is a significant addition.' },
-                { rank: 4, title: 'Boneless vs Classic', cal: '~20% diff', Icon: Beef, iconColor: 'text-emerald-600', bg: 'bg-emerald-50', color: 'border-emerald-200 bg-emerald-50', text: 'Boneless wings have more carbs from breading. Classic wings have more fat. Neither is "healthier" in all cases.' },
-              ].map((item) => (
-                <div key={item.rank} className={`rounded-[2rem] p-7 border-2 ${item.color} hover:-translate-y-1 hover:shadow-lg transition-all duration-300`}>
-                  <div className="flex items-start justify-between mb-4">
-                    <div className={`w-11 h-11 rounded-2xl ${item.bg} border border-white flex items-center justify-center shadow-sm`}>
-                      <item.Icon size={22} className={item.iconColor} />
-                    </div>
-                    <span className="text-[10px] font-black bg-white rounded-full px-3 py-1.5 text-gray-500 shadow-sm border">{item.cal}</span>
-                  </div>
-                  <h3 className="text-lg font-black text-gray-900 mb-2 uppercase tracking-tight">#{item.rank} {item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed font-medium">{item.text}</p>
-                </div>
-              ))}
-            </div>
-            <div className="space-y-6">
-              <div className="bg-primary rounded-[2rem] p-8 text-white shadow-2xl shadow-primary/25 relative overflow-hidden">
-                <CalcIcon size={36} className="text-secondary mb-6 relative z-10" />
-                <h3 className="text-2xl font-black italic uppercase mb-4">Why a Calculator Beats a Chart</h3>
-                <p className="text-white/70 font-medium leading-relaxed mb-6">A nutrition chart shows you individual items. A calculator shows you what your actual order costs — including all the extras people forget to count.</p>
-                <div className="space-y-3">
-                  {["Combines multiple items", "Adjusts for your diet goal", "Shows burn equivalents", "Works for any order size"].map((f) => (
-                    <div key={f} className="flex items-center gap-3">
-                      <span className="w-5 h-5 rounded-full bg-secondary/30 flex items-center justify-center shrink-0">
-                        <ChevronRight size={10} className="text-secondary" />
-                      </span>
-                      <span className="text-sm font-bold text-white/80">{f}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="bg-white rounded-[2rem] p-6 border border-gray-100 shadow-sm">
-                <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-4">Explore More</p>
-                <div className="space-y-2">
-                  {[
-                    { href: '/menu', label: 'Full Menu & Prices', icon: Utensils, color: 'text-primary' },
-                    { href: '/wingstop-gluten-free', label: 'Gluten Free Options', icon: Leaf, color: 'text-emerald-500' },
-                    { href: '/allergen-menu', label: 'Allergen Information', icon: AlertTriangle, color: 'text-amber-500' },
-                    { href: '/locations', label: 'Find a Location', icon: MapPin, color: 'text-rose-500' },
-                  ].map(lnk => (
-                    <Link key={lnk.href} href={lnk.href} className="flex items-center gap-3 p-3.5 rounded-2xl hover:bg-gray-50 transition-colors group border border-transparent hover:border-gray-100">
-                      <lnk.icon size={15} className={lnk.color} />
-                      <span className="text-[11px] font-black text-gray-700 group-hover:text-primary transition-colors uppercase tracking-wide flex-1">{lnk.label}</span>
-                      <ArrowRight size={12} className="text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
+          
+          <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm mt-8">
+            <h3 className="text-2xl font-black italic uppercase text-gray-900 mb-4">Why Use a Calculator Instead of a Chart?</h3>
+            <p className="text-gray-600 mb-4">A static nutrition chart is hard to read when you are combining 10 Lemon Pepper wings, regular fries, and a ranch dip. A calculator instantly merges these items, showing you the true total of your exact customized meal.</p>
           </div>
         </div>
       </section>
 
-      {/* ═══ MACROS SECTION ═══ */}
-      <section className="py-28 bg-slate-50">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
-            <div className="bg-primary rounded-[2.5rem] p-12 text-white shadow-2xl shadow-primary/20 flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-white/5 translate-x-24 -translate-y-24" />
-              <div>
-                <div className="w-14 h-14 rounded-[1.2rem] bg-white/10 flex items-center justify-center mb-8">
-                  <Target size={28} className="text-secondary" />
-                </div>
-                <h2 className="text-4xl font-black italic uppercase tracking-tighter leading-none mb-8">Understanding Wingstop Macros</h2>
-                <div className="space-y-6 relative z-10">
-                  {[
-                    { q: 'For High Protein', a: 'Classic bone-in wings: ~10g protein per piece, minimal carbs — ideal for muscle-building orders.' },
-                    { q: 'For Low Carb / Keto', a: 'Avoid boneless and sauced items. Dry rubs like Lemon Pepper & Louisiana Rub are lowest carb.' },
-                    { q: 'For Balanced Meals', a: 'A combo with 6 classic wings, veggie sticks, and no fries sits around 600–700 kcal total.' },
-                  ].map((item, i) => (
-                    <div key={i} className="flex gap-5 group">
-                      <div className="shrink-0 w-1.5 bg-secondary/40 rounded-full" />
-                      <div>
-                        <h4 className="text-[11px] font-black uppercase tracking-widest text-secondary mb-1.5">{item.q}</h4>
-                        <p className="text-sm font-medium text-white/70 leading-relaxed">{item.a}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="mt-10 pt-8 border-t border-white/10 flex items-center gap-4">
-                <div className="p-3 bg-white/10 rounded-2xl"><Users size={18} className="text-secondary" /></div>
-                <p className="text-sm font-black text-white">Best for: Calorie counters, macro trackers, gym-goers, and families</p>
-              </div>
+      {/* ═══ MACROS SECTION (ARTICLE STYLE) ═══ */}
+      <section className="py-20 bg-white border-b border-gray-100">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-gray-900 mb-6">Understanding Wingstop Macros</h2>
+          <p className="text-lg text-gray-600 font-medium leading-relaxed mb-8">
+            Depending on your fitness goals, you can easily adapt a Wingstop order to fit your macros. Here is a quick breakdown of how to order for specific diets:
+          </p>
+          
+          <div className="space-y-8">
+            <div className="border-l-4 border-primary pl-5">
+              <h3 className="text-lg font-bold text-gray-900 uppercase tracking-wide mb-2">For High Protein Diets</h3>
+              <p className="text-gray-600">Classic bone-in wings offer roughly 10g of protein per piece with minimal carbs. A 10-piece order provides an excellent 100g of protein, making it highly effective for muscle building and satiety.</p>
             </div>
-            <div className="space-y-6">
-              <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100">
-                <h3 className="text-xl font-black text-gray-900 uppercase italic tracking-tight mb-6">Lowest vs Highest Calorie Classic Wings</h3>
-                <div className="space-y-4">
-                  {[
-                    { name: 'Atomic', cal: 90, bar: 75, color: 'bg-emerald-400' },
-                    { name: 'Cajun', cal: 90, bar: 75, color: 'bg-emerald-400' },
-                    { name: 'Original Hot', cal: 90, bar: 75, color: 'bg-emerald-400' },
-                    { name: 'Louisiana Rub', cal: 110, bar: 90, color: 'bg-amber-400' },
-                    { name: 'Lemon Pepper', cal: 120, bar: 100, color: 'bg-rose-400' },
-                    { name: 'Garlic Parmesan', cal: 120, bar: 100, color: 'bg-rose-400' },
-                  ].map((f) => (
-                    <div key={f.name} className="flex items-center gap-4 group">
-                      <span className="text-[11px] font-black text-gray-400 w-36 shrink-0 uppercase tracking-wide">{f.name}</span>
-                      <div className="flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                        <div className={`h-full ${f.color} rounded-full`} style={{ width: `${f.bar}%` }} />
-                      </div>
-                      <span className="text-sm font-black text-gray-800 w-16 text-right">{f.cal} cal</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-[10px] text-gray-400 font-bold mt-5 uppercase tracking-widest">Per classic bone-in wing</p>
-              </div>
-              <div className="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100">
-                <h3 className="text-lg font-black text-gray-900 uppercase italic tracking-tight mb-5">Quick Macro Facts</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { Icon: Dumbbell, iconColor: 'text-emerald-600', bg: 'bg-emerald-50', fact: '10g protein per classic wing', sub: 'Best protein-to-calorie ratio' },
-                    { Icon: Beef, iconColor: 'text-primary', bg: 'bg-primary/5', fact: 'Bone-in = lower carbs', sub: 'No breading, cleaner macros' },
-                    { Icon: AlertCircle, iconColor: 'text-amber-500', bg: 'bg-amber-50', fact: 'Ranch = 320 kcal', sub: 'Easy to miss in tracking' },
-                    { Icon: Utensils, iconColor: 'text-rose-500', bg: 'bg-rose-50', fact: 'Fries: 500–900 kcal', sub: 'Biggest calorie add-on' },
-                  ].map((f, i) => (
-                    <div key={i} className="p-4 bg-gray-50 rounded-2xl border border-gray-100 hover:-translate-y-0.5 hover:shadow-sm transition-all">
-                      <div className={`w-9 h-9 rounded-xl ${f.bg} flex items-center justify-center mb-3`}>
-                        <f.Icon size={18} className={f.iconColor} />
-                      </div>
-                      <p className="text-xs font-black text-gray-800 leading-tight">{f.fact}</p>
-                      <p className="text-[9px] text-gray-400 mt-1 font-bold uppercase tracking-wider">{f.sub}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            
+            <div className="border-l-4 border-emerald-500 pl-5">
+              <h3 className="text-lg font-bold text-gray-900 uppercase tracking-wide mb-2">For Low Carb & Keto Diets</h3>
+              <p className="text-gray-600">Avoid boneless wings, tenders, and sweet sauces like Mango Habanero or Hawaiian. Stick to classic wings with dry rubs (Lemon Pepper, Louisiana Rub) or Original Hot to keep your carbohydrate intake near zero.</p>
             </div>
+            
+            <div className="border-l-4 border-amber-500 pl-5">
+              <h3 className="text-lg font-bold text-gray-900 uppercase tracking-wide mb-2">For Balanced Calorie Counting</h3>
+              <p className="text-gray-600">A reasonable combo of 6 classic wings, veggie sticks (instead of fries), and a diet soda sits around 600–700 calories total. Skipping the fries and ranch is the easiest way to keep your meal balanced.</p>
+            </div>
+          </div>
+
+          <div className="mt-12 bg-gray-50 rounded-2xl p-8 border border-gray-100">
+            <h3 className="text-xl font-black text-gray-900 mb-4">Lowest vs. Highest Calorie Wing Flavors</h3>
+            <ul className="space-y-3 text-gray-600">
+              <li className="flex justify-between items-center border-b border-gray-200 pb-2">
+                <span><strong>Atomic</strong> (Lowest)</span>
+                <span>90 cal / wing</span>
+              </li>
+              <li className="flex justify-between items-center border-b border-gray-200 pb-2">
+                <span><strong>Original Hot</strong> (Lowest)</span>
+                <span>90 cal / wing</span>
+              </li>
+              <li className="flex justify-between items-center border-b border-gray-200 pb-2">
+                <span><strong>Louisiana Rub</strong> (Medium)</span>
+                <span>110 cal / wing</span>
+              </li>
+              <li className="flex justify-between items-center border-b border-gray-200 pb-2">
+                <span><strong>Lemon Pepper</strong> (Highest)</span>
+                <span>120 cal / wing</span>
+              </li>
+              <li className="flex justify-between items-center">
+                <span><strong>Garlic Parmesan</strong> (Highest)</span>
+                <span>120 cal / wing</span>
+              </li>
+            </ul>
+            <p className="text-xs text-gray-500 mt-4 italic">*Estimates based on classic bone-in wings.</p>
           </div>
         </div>
       </section>
 
-      {/* ═══ NUTRITION DATA TABLES ═══ */}
-      <section className="py-28 bg-white" id="nutrition-facts">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/5 border border-primary/10 mb-6">
-              <Zap size={12} className="text-primary" />
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/60">Official 2026 Data</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-gray-900 italic uppercase leading-none mb-4">Official Wingstop Nutrition Facts (2026)</h2>
-            <p className="text-base text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed">Complete per-piece and per-serving data for every category.</p>
+      {/* ═══ NUTRITION DATA TABLES (ARTICLE STYLE) ═══ */}
+      <section className="py-20 bg-slate-50 border-b border-gray-100" id="nutrition-facts">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tighter text-gray-900 uppercase mb-4">Official Wingstop Nutrition Facts (2026)</h2>
+            <p className="text-gray-600 font-medium max-w-2xl mx-auto">
+              If you prefer to see the raw data, below are the complete per-piece and per-serving tables for the entire Wingstop menu.
+            </p>
           </div>
-          <div className="space-y-16">
+          <div className="space-y-10">
             {Object.keys(FULL_NUTRITION_DATA).map((cat) => (
-              <div key={cat} className="relative">
-                <div className="absolute inset-0 bg-primary/5 rounded-[2.5rem] -rotate-1 skew-y-1 scale-105 pointer-events-none opacity-30" />
-                <div className="relative bg-white rounded-[2.5rem] p-4 sm:p-8 shadow-xl shadow-gray-100/50 border border-gray-100 overflow-hidden">
-                  <NutritionTable
-                    title={`${cat} — Full Nutrition Facts`}
-                    columns={NUTRITION_COLUMNS}
-                    data={FULL_NUTRITION_DATA[cat as keyof typeof FULL_NUTRITION_DATA]}
-                  />
-                </div>
+              <div key={cat} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden p-4 sm:p-6">
+                <NutritionTable
+                  title={`${cat} Nutrition`}
+                  columns={NUTRITION_COLUMNS}
+                  data={FULL_NUTRITION_DATA[cat as keyof typeof FULL_NUTRITION_DATA]}
+                />
               </div>
             ))}
           </div>
-          <div className="mt-16 text-center">
-            <Link href="/menu" className="inline-flex items-center gap-3 px-10 py-5 bg-primary text-white rounded-2xl font-black uppercase tracking-widest text-sm shadow-xl shadow-primary/25 hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all">
+          <div className="mt-12 text-center">
+            <Link href="/menu" className="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 text-white rounded-lg font-bold text-sm hover:bg-gray-800 transition-colors">
               View Complete Menu With Prices
-              <ArrowRight size={18} />
+              <ArrowRight size={16} />
             </Link>
           </div>
         </div>
