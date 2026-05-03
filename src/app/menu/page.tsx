@@ -45,7 +45,7 @@ const CATEGORY_ORDER = [
 export const metadata: Metadata = {
   title: 'Wingstop Menu With Prices & Pictures | Updated 2026',
   description: 'View the complete Wingstop menu with updated prices and nutrition facts for 2026. Official guide to wings, deals, combos, and sides with calorie counts.',
-  alternates: { canonical: '/menu' },
+  alternates: { canonical: 'https://wingstopcaloriecalculator.us/menu' },
   openGraph: {
     title: 'Wingstop Menu With Prices & Pictures | Updated 2026',
     description: 'View the complete Wingstop menu with updated prices and nutrition facts for 2026. Official guide to wings, deals, combos, and sides with calorie counts.',

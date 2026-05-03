@@ -97,11 +97,11 @@ export default function Footer() {
             </p>
             <div className="flex flex-wrap gap-3">
               {[
-                { Icon: SocialIcons.Facebook, href: '#' },
-                { Icon: SocialIcons.Instagram, href: '#' },
-                { Icon: SocialIcons.X, href: '#' },
-                { Icon: SocialIcons.YouTube, href: '#' },
-                { Icon: SocialIcons.TikTok, href: '#' }
+                { Icon: SocialIcons.Facebook, href: 'https://www.facebook.com/Wingstop' },
+                { Icon: SocialIcons.Instagram, href: 'https://www.instagram.com/wingstop/' },
+                { Icon: SocialIcons.X, href: 'https://x.com/wingstop' },
+                { Icon: SocialIcons.YouTube, href: 'https://www.youtube.com/wingstop' },
+                { Icon: SocialIcons.TikTok, href: 'https://www.tiktok.com/@wingstop' }
               ].map((item, i) => (
                 <a key={i} href={item.href} target="_blank" rel="noopener noreferrer"
                   className="group relative bg-white/5 p-3 rounded-2xl hover:bg-secondary transition-all duration-300 border border-white/5 hover:border-secondary/20 overflow-hidden shadow-lg">

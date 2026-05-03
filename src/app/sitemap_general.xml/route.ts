@@ -2,6 +2,8 @@ import { menuItems } from '@/lib/data/menu';
 
 export async function GET() {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://wingstopcaloriecalculator.us';
+    // Use a fixed date that only changes on redeploy
+    const lastmod = new Date('2026-05-04T00:00:00Z');
 
     // 1. Core pages
     const coreRoutes = [
@@ -14,9 +16,12 @@ export async function GET() {
         '/locations',
         '/about',
         '/contact',
+        '/privacy-policy',
+        '/terms',
+        '/disclaimer',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
-        lastModified: new Date(),
+        lastModified: lastmod,
         changeFrequency: 'weekly',
         priority: route === '' ? 1.0 : 0.8,
     }));
@@ -24,7 +29,7 @@ export async function GET() {
     // 2. Menu Item Pages
     const menuRoutes = menuItems.map((item) => ({
         url: `${baseUrl}/menu/${item.slug}`,
-        lastModified: new Date(),
+        lastModified: lastmod,
         changeFrequency: 'monthly',
         priority: 0.7,
     }));
@@ -36,7 +41,7 @@ export async function GET() {
     ];
     const categoryRoutes = categories.map((cat) => ({
         url: `${baseUrl}/menu/${cat}`,
-        lastModified: new Date(),
+        lastModified: lastmod,
         changeFrequency: 'weekly',
         priority: 0.85,
     }));
@@ -57,6 +62,7 @@ ${allRoutes.map(route => `
     return new Response(xml, {
         headers: {
             'Content-Type': 'application/xml',
+            'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200',
         },
     });
 }

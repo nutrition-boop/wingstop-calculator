@@ -3,12 +3,14 @@ import { loadLocations, groupByState, groupByCity } from '@/lib/locations';
 export async function GET() {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://wingstopcaloriecalculator.us';
     const locations = loadLocations();
+    // Use a fixed date that only changes on redeploy
+    const lastmod = new Date('2026-05-04T00:00:00Z');
 
     // 1. State Pages
     const states = groupByState(locations);
     const stateRoutes = states.map((s) => ({
         url: `${baseUrl}/locations/${s.stateSlug}`,
-        lastModified: new Date(),
+        lastModified: lastmod,
         changeFrequency: 'monthly',
         priority: 0.6,
     }));
@@ -21,7 +23,7 @@ export async function GET() {
         cities.forEach(city => {
             allCityRoutes.push({
                 url: `${baseUrl}/locations/${state.stateSlug}/${city.citySlug}`,
-                lastModified: new Date(),
+                lastModified: lastmod,
                 changeFrequency: 'monthly',
                 priority: 0.5,
             });
@@ -33,7 +35,7 @@ export async function GET() {
         const stateSlug = loc.stateName.toLowerCase().replace(/\s+/g, '-');
         return {
             url: `${baseUrl}/locations/${stateSlug}/${loc.citySlug}/${loc.slug}`,
-            lastModified: new Date(),
+            lastModified: lastmod,
             changeFrequency: 'monthly',
             priority: 0.4,
         };
@@ -55,6 +57,7 @@ ${allRoutes.map(route => `
     return new Response(xml, {
         headers: {
             'Content-Type': 'application/xml',
+            'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200',
         },
     });
 }

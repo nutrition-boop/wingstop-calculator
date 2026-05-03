@@ -298,11 +298,6 @@ function CategoryView({ cfg, slug, items: dbItems }: { cfg: any, slug: string, i
         '@type': 'Product',
         name: itm.name,
         image: 'https://wingstopcaloriecalculator.us/icon.png',
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '4.8',
-          reviewCount: Math.floor(Math.random() * 500) + 50 // Adds a slight variation to review counts
-        },
         url: `https://wingstopcaloriecalculator.us/menu/${itm.slug}`,
         offers: {
           '@type': 'Offer',
@@ -566,11 +561,6 @@ function ItemView({ item }: { item: MenuItem }) {
       priceCurrency: 'USD',
       price: item.price.toFixed(2),
       availability: 'https://schema.org/InStock'
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: Math.floor(Math.random() * 500) + 120 // Static approximation for Rich Snippets
     },
     nutrition: {
       '@type': 'NutritionInformation',

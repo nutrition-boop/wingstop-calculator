@@ -20,7 +20,6 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    nocache: true,
     googleBot: {
       index: true,
       follow: true,
@@ -29,14 +28,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  keywords: [
-    'wingstop nutrition calculator',
-    'wingstop calories',
-    'wingstop calorie calculator',
-    'wingstop macros',
-    'wingstop nutrition facts',
-    'wingstop calories per wing',
-  ],
   openGraph: {
     title: 'Wingstop Nutrition Calculator – Calories & Macros for Every Item',
     description: 'Track your Wingstop calories and macros instantly. Set your daily goal, see burn equivalents, and build your perfect meal.',
