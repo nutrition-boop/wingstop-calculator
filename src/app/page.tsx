@@ -186,31 +186,32 @@ export default function Home() {
       />
 
       {/* ═══ HERO SECTION ═══ */}
-      <section id="calculator-top" className="relative pt-32 pb-28 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
+      <section id="calculator-top" className="relative pt-36 pb-32 overflow-hidden bg-gradient-to-br from-[#003D20] via-[#005C30] to-[#006938] border-b-8 border-[#FDB913]">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-20 left-1/4 w-[500px] h-[500px] rounded-full bg-primary/5 blur-[100px]" />
-          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-secondary/10 blur-[80px]" />
-          <div className="absolute top-1/2 left-0 w-[300px] h-[300px] rounded-full bg-emerald-500/5 blur-[80px]" />
-          <div className="absolute inset-0 opacity-[0.015]" style={{ backgroundImage: 'linear-gradient(rgba(0,0,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+          <div className="absolute top-20 left-1/4 w-[600px] h-[600px] rounded-full bg-white/5 blur-[120px]" />
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-[#FDB913]/10 blur-[100px]" />
+          <div className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full bg-emerald-400/5 blur-[100px]" />
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         </div>
 
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
           <div className="max-w-5xl mx-auto text-center mb-16">
-            <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white border border-gray-100 shadow-md shadow-gray-100/50 mb-8">
-              <Star size={13} className="text-secondary fill-secondary" />
-              <span className="text-[10px] font-black uppercase tracking-[0.35em] text-primary/50">Official Nutri-Data 2026</span>
+            <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/10 border border-white/20 shadow-xl backdrop-blur-md mb-8 hover:bg-white/15 transition-all">
+              <Star size={13} className="text-[#FDB913] fill-[#FDB913]" />
+              <span className="text-[10px] font-black uppercase tracking-[0.35em] text-white/90">Official Nutri-Data 2026</span>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             </div>
 
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-gray-900 mb-6 tracking-tighter italic uppercase leading-[0.95]">
-              Wingstop <span className="text-primary relative">
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tighter italic uppercase leading-[0.95] drop-shadow-2xl">
+              Wingstop <span className="text-[#FDB913] relative inline-block">
                 Nutrition Facts
-                <span className="absolute -bottom-1 left-0 right-0 h-1.5 bg-primary/20 rounded-full" />
+                <span className="absolute -bottom-2 left-0 right-0 h-2 bg-[#FDB913]/30 rounded-full blur-sm" />
               </span>{' '}
-              &amp; Calorie Calculator
+              <br className="hidden sm:block" />
+              <span className="text-white/90 text-5xl sm:text-6xl lg:text-7xl">&amp; Calorie Calculator</span>
             </h1>
-            <p className="text-lg sm:text-xl text-gray-500 font-medium leading-relaxed max-w-2xl mx-auto mb-10">
-              Track your Wingstop calories and macros instantly. Set your daily goal, see burn equivalents, and build your perfect meal.
+            <p className="text-lg sm:text-xl text-white/70 font-medium leading-relaxed max-w-2xl mx-auto mb-12">
+              Track your Wingstop calories and macros instantly. Set your daily goal, see burn equivalents, and build your perfect meal with absolute precision.
             </p>
 
             {/* Trust Badges */}
@@ -221,9 +222,9 @@ export default function Home() {
                 { icon: Target, label: 'Macro Tracking' },
                 { icon: Award, label: 'Keto & Diet Modes' },
               ].map((pill, i) => (
-                <div key={i} className="flex items-center gap-2.5 px-6 py-3.5 bg-white rounded-2xl shadow-lg shadow-gray-100/60 border border-gray-50 hover:scale-105 hover:shadow-xl transition-all cursor-default">
-                  <pill.icon size={16} className="text-primary" />
-                  <span className="text-[11px] font-black uppercase tracking-widest text-gray-600">{pill.label}</span>
+                <div key={i} className="flex items-center gap-3 px-6 py-3.5 bg-white/5 backdrop-blur-md rounded-2xl shadow-xl border border-white/10 hover:bg-white/10 hover:-translate-y-1 hover:border-white/20 transition-all cursor-default group">
+                  <pill.icon size={18} className="text-[#FDB913] group-hover:scale-110 transition-transform" />
+                  <span className="text-[11px] font-black uppercase tracking-widest text-white/90">{pill.label}</span>
                 </div>
               ))}
             </div>
