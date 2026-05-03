@@ -109,12 +109,21 @@ export default function ReviewsSection({ googleReviews, userReviews: initialUser
           </AnimatePresence>
         </div>
       ) : (
-        <div className="text-center py-10 opacity-40">
-          <Star size={48} className="mx-auto text-gray-200 mb-4" />
-          <p className="text-sm font-black uppercase tracking-widest text-gray-400">
-            Be the first to review this location!
+        <div className="text-center py-12 bg-gray-50/50 rounded-3xl border border-gray-100">
+          <Star size={48} className="mx-auto text-gray-300 mb-4" />
+          <h4 className="text-lg font-black uppercase tracking-widest text-gray-900 mb-2">No Reviews Found</h4>
+          <p className="text-sm font-medium text-gray-500 max-w-sm mx-auto mb-6">
+            We currently don't have any reviews for this Wingstop location. Be the first to share your experience!
           </p>
         </div>
+      )}
+
+      {hasAnyReviews && (
+          <div className="mt-8 text-right">
+              <span className="text-[9px] font-bold uppercase tracking-widest text-gray-400 bg-gray-50 px-3 py-1.5 rounded-full inline-block">
+                  Reviews sourced from Google Maps
+              </span>
+          </div>
       )}
 
       <WriteReview

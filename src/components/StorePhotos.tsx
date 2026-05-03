@@ -10,7 +10,22 @@ interface StorePhotosProps {
 }
 
 export default function StorePhotos({ photos, city, state, address }: StorePhotosProps) {
-    if (!photos || photos.length === 0) return null;
+    if (!photos || photos.length === 0) {
+        return (
+            <div className="bg-white rounded-[2rem] p-8 sm:p-12 border border-gray-100 shadow-sm relative overflow-hidden lg:col-span-2 order-6 flex flex-col items-center justify-center text-center min-h-[300px]">
+                <Camera size={48} className="text-gray-200 mb-4" />
+                <h3 className="text-xl font-black uppercase tracking-tight text-gray-900 mb-2" style={{ fontFamily: "'Bebas Neue', 'Outfit', sans-serif" }}>
+                    No Images Found
+                </h3>
+                <p className="text-sm font-medium text-gray-500 max-w-sm">
+                    We currently do not have any gallery photos for this Wingstop location. Check back later!
+                </p>
+                <div className="mt-8 text-[9px] font-bold uppercase tracking-widest text-gray-400 bg-gray-50 px-4 py-2 rounded-full">
+                    Photos & Reviews are sourced from Google Maps
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="bg-white rounded-[2rem] p-8 sm:p-12 border border-gray-100 shadow-sm relative overflow-hidden lg:col-span-2 order-6">
@@ -36,6 +51,12 @@ export default function StorePhotos({ photos, city, state, address }: StorePhoto
                         </div>
                     );
                 })}
+            </div>
+            
+            <div className="mt-8 text-right">
+                <span className="text-[9px] font-bold uppercase tracking-widest text-gray-400 bg-gray-50 px-3 py-1.5 rounded-full inline-block">
+                    Photos sourced from Google Maps
+                </span>
             </div>
         </div>
     );
