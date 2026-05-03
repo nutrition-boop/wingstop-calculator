@@ -103,8 +103,8 @@ export default async function LocationDetailPage({ params }: Props) {
     '@type': 'LocalBusiness',
     name: loc.name,
     image: placeDetails?.photoUrls?.[0] || 'https://www.wingstop.com/assets/images/favicon.ico',
-    '@id': loc.sourceUrl || `https://wingstopcaloriecalculator.us/locations/${loc.stateName.toLowerCase().replace(/\s+/g,'-')}/${loc.citySlug}/${loc.slug}`,
-    url: loc.sourceUrl || `https://wingstopcaloriecalculator.us/locations/${loc.stateName.toLowerCase().replace(/\s+/g,'-')}/${loc.citySlug}/${loc.slug}`,
+    '@id': loc.sourceUrl || `https://wingstopcaloriecalculator.us/locations/${params.state}/${params.city}/${loc.slug}`,
+    url: loc.sourceUrl || `https://wingstopcaloriecalculator.us/locations/${params.state}/${params.city}/${loc.slug}`,
     telephone: loc.phone,
     priceRange: "$$",
     menu: "https://wingstopcaloriecalculator.us/menu",
@@ -135,8 +135,8 @@ export default async function LocationDetailPage({ params }: Props) {
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://wingstopcaloriecalculator.us/' },
       { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://wingstopcaloriecalculator.us/locations' },
-      { '@type': 'ListItem', position: 3, name: loc.stateName, item: `https://wingstopcaloriecalculator.us/locations/${loc.stateName.toLowerCase().replace(/\s+/g,'-')}` },
-      { '@type': 'ListItem', position: 4, name: loc.city, item: `https://wingstopcaloriecalculator.us/locations/${loc.stateName.toLowerCase().replace(/\s+/g,'-')}/${loc.citySlug}` },
+      { '@type': 'ListItem', position: 3, name: loc.stateName, item: `https://wingstopcaloriecalculator.us/locations/${params.state}` },
+      { '@type': 'ListItem', position: 4, name: loc.city, item: `https://wingstopcaloriecalculator.us/locations/${params.state}/${params.city}` },
       { '@type': 'ListItem', position: 5, name: loc.name }
     ]
   };
