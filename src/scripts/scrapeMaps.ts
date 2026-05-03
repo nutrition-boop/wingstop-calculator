@@ -41,6 +41,9 @@ async function run() {
     await mongoose.connect(process.env.MONGODB_URI as string);
     console.log("Connected to MongoDB.");
 
+    const CHUNK_SIZE = 5; // Run 5 tabs concurrently
+    const limit = 50; // Process 50 per script run so it doesn't crash memory
+
     const targets = await LocationData.find({
       $or: [
         { photos: { $size: 0 } },
@@ -48,128 +51,103 @@ async function run() {
         { reviews: { $size: 0 } },
         { reviews: { $exists: false } }
       ]
-    }).limit(10); // Batch limit to avoid freezing the system
+    }).limit(limit);
 
     if (targets.length === 0) {
         console.log("All locations already have photos and reviews!");
         process.exit(0);
     }
 
-    console.log(`Found ${targets.length} locations to scrape.`);
+    console.log(`Found ${targets.length} locations to scrape in this batch.`);
 
     let chromePath = CHROME_PATHS.find(p => fs.existsSync(p));
     if (!chromePath) {
-        console.error(`Chrome not found. Please ensure Google Chrome is installed on your Windows machine.`);
+        console.error(`Chrome not found. Please ensure Google Chrome is installed.`);
         process.exit(1);
     }
 
     const browser = await puppeteer.launch({
         executablePath: chromePath,
-        headless: false, // Chrome window will open visually as requested
+        headless: false, 
         defaultViewport: null,
         args: ['--start-maximized']
     });
 
-    for (const loc of targets) {
-        const page = await browser.newPage();
-        try {
-            const queryParts = ['Wingstop', loc.address, loc.city, loc.stateName || loc.state].filter(Boolean);
-            const query = encodeURIComponent(queryParts.join(' '));
-            const url = `https://www.google.com/maps/search/${query}`;
-            console.log(`\n======================================================`);
-            console.log(`Navigating to Google Maps for: ${loc.storeSlug}`);
-            console.log(`URL: ${url}`);
-            
-            await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
-            console.log('Waiting for map and images to fully load...');
-            
-            // Wait for images to load in the sidebar
-            await delay(7000); 
-
-            console.log('Extracting photos from Google Maps...');
-            const images = await page.evaluate(() => {
-                const imgs = Array.from(document.querySelectorAll('img'));
-                return imgs
-                    .map(img => img.src)
-                    .filter(src => (src.includes('googleusercontent.com/p/') || src.includes('ggpht.com/p/')))
-                    // We try to exclude obvious menu/food icons by filtering out small resolution patterns if any
-                    // but usually the main side-panel images are store views
-                    .filter(src => src.length > 50);
-            });
-
-            // Get unique images, slice exactly 2 (for inside and outside)
-            const uniqueImages = [...new Set(images)].slice(0, 2);
-            
-            const uploadedUrls: string[] = [];
-            for (const imgUrl of uniqueImages) {
-                try {
-                    // Extract base URL and append '=s1000' to force high resolution download
-                    const highResUrl = imgUrl.split('=')[0] + '=s1000';
-                    console.log(`Uploading to Cloudinary: ${highResUrl}`);
-                    
-                    const result = await cloudinary.uploader.upload(highResUrl, {
-                        folder: "wingstop_locations_scraped",
-                        format: "webp",
-                    });
-                    uploadedUrls.push(result.secure_url);
-                    console.log(`  Success -> ${result.secure_url}`);
-                } catch(e) {
-                    console.error("  Failed to upload image", e);
-                }
-            }
-
-            if (uploadedUrls.length > 0) {
-                loc.photos = uploadedUrls;
-            } else {
-                console.log('  No suitable photos found on Maps.');
-            }
-
-            console.log('Extracting reviews...');
-            const reviewElements = await page.evaluate(() => {
-                const results = [];
-                // Look for standard Google Maps review text blocks
-                const els = Array.from(document.querySelectorAll('.wiI7pd')); 
+    for (let i = 0; i < targets.length; i += CHUNK_SIZE) {
+        const chunk = targets.slice(i, i + CHUNK_SIZE);
+        console.log(`\n--- Processing chunk ${i / CHUNK_SIZE + 1} of ${Math.ceil(targets.length / CHUNK_SIZE)} ---`);
+        
+        await Promise.all(chunk.map(async (loc) => {
+            const page = await browser.newPage();
+            try {
+                const queryParts = ['Wingstop', loc.address, loc.city, loc.stateName || loc.state].filter(Boolean);
+                const query = encodeURIComponent(queryParts.join(' '));
+                const url = `https://www.google.com/maps/search/${query}`;
                 
-                // Grab top 3 reviews
-                for(let i = 0; i < Math.min(els.length, 3); i++) {
-                    const textContent = els[i]?.textContent || '';
-                    if (textContent.length > 10) { // filter out empty or extremely short ones
-                        results.push({
-                            text: textContent,
-                            author_name: "Google Reviewer",
-                            rating: 5, // Default fallback if actual rating element isn't easily selectable
-                            relative_time_description: "recently",
-                            profile_photo_url: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
+                
+                // Wait for the main panel to settle instead of a long hard delay
+                await page.waitForSelector('img', { timeout: 10000 }).catch(() => {});
+                await delay(3000); 
+
+                const images = await page.evaluate(() => {
+                    const imgs = Array.from(document.querySelectorAll('img'));
+                    return imgs
+                        .map(img => img.src)
+                        .filter(src => (src.includes('googleusercontent.com/p/') || src.includes('ggpht.com/p/')))
+                        .filter(src => src.length > 50);
+                });
+
+                const uniqueImages = [...new Set(images)].slice(0, 2);
+                
+                const uploadedUrls: string[] = [];
+                for (const imgUrl of uniqueImages) {
+                    try {
+                        const highResUrl = imgUrl.split('=')[0] + '=s1000';
+                        const result = await cloudinary.uploader.upload(highResUrl, {
+                            folder: "wingstop_locations_scraped",
+                            format: "webp",
                         });
-                    }
+                        uploadedUrls.push(result.secure_url);
+                    } catch(e) { }
                 }
-                return results;
-            });
 
-            if (reviewElements.length > 0) {
-                loc.reviews = reviewElements;
-                console.log(`  Scraped ${reviewElements.length} reviews.`);
-            } else {
-                console.log('  No reviews visible on the main panel.');
+                if (uploadedUrls.length > 0) loc.photos = uploadedUrls;
+
+                const reviewElements = await page.evaluate(() => {
+                    const results = [];
+                    const els = Array.from(document.querySelectorAll('.wiI7pd')); 
+                    for(let j = 0; j < Math.min(els.length, 3); j++) {
+                        const textContent = els[j]?.textContent || '';
+                        if (textContent.length > 10) { 
+                            results.push({
+                                text: textContent,
+                                author_name: "Google Reviewer",
+                                rating: 5, 
+                                relative_time_description: "recently",
+                                profile_photo_url: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                            });
+                        }
+                    }
+                    return results;
+                });
+
+                if (reviewElements.length > 0) loc.reviews = reviewElements;
+
+                await loc.save();
+                console.log(`[Success] Scraped & saved: ${loc.storeSlug} (${uploadedUrls.length} images, ${reviewElements.length} reviews)`);
+
+            } catch(e) {
+                console.error(`[Error] ${loc.storeSlug} failed.`);
+            } finally {
+                await page.close();
             }
-
-            // Always save to mark as processed or update with found data
-            await loc.save();
-            console.log(`Data saved to MongoDB for ${loc.storeSlug}.`);
-
-        } catch(e) {
-            console.error(`Error scraping ${loc.storeSlug}:`, e);
-        } finally {
-            await page.close();
-            // Wait 3 seconds before next store to avoid immediate rate limit blocking
-            await delay(3000);
-        }
+        }));
     }
 
     console.log("\nBatch completed!");
     await browser.close();
     await mongoose.disconnect();
-    console.log("Closed browser and MongoDB connection.");
 }
 
 run();
