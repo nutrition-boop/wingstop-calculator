@@ -42,7 +42,6 @@ async function run() {
     console.log("Connected to MongoDB.");
 
     const CHUNK_SIZE = 5; // Run 5 tabs concurrently
-    const limit = 50; // Process 50 per script run so it doesn't crash memory
 
     const targets = await LocationData.find({
       $or: [
@@ -51,14 +50,14 @@ async function run() {
         { reviews: { $size: 0 } },
         { reviews: { $exists: false } }
       ]
-    }).limit(limit);
+    });
 
     if (targets.length === 0) {
         console.log("All locations already have photos and reviews!");
         process.exit(0);
     }
 
-    console.log(`Found ${targets.length} locations to scrape in this batch.`);
+    console.log(`Found ${targets.length} locations to scrape in this run.`);
 
     let chromePath = CHROME_PATHS.find(p => fs.existsSync(p));
     if (!chromePath) {
