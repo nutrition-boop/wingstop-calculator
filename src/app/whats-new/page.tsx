@@ -40,72 +40,72 @@ const CHANGELOG: ChangelogEntry[] = [
   {
     version: '2.0',
     date: 'May 4, 2026',
-    title: 'Premium Redesign & Store Intelligence',
-    description: 'A ground-up visual overhaul with an entirely new design system, automated store data pipeline, and major SEO infrastructure upgrades across all 1,500+ location pages.',
+    title: 'Fresh New Look & Real Store Photos',
+    description: 'We gave the entire site a major makeover! You can now see real photos of your local Wingstop, read actual customer reviews, and enjoy a much cleaner, faster browsing experience across all 1,500+ store pages.',
     type: 'major',
     highlights: [
       {
         icon: Layout,
-        title: 'Premium Visual Redesign',
-        description: 'Complete homepage and page redesign with a modern, content-first layout inspired by top-tier editorial sites. New typography, refined spacing, and polished micro-animations throughout.'
+        title: 'Brand New Design',
+        description: 'The whole site has been redesigned from scratch with a cleaner, more modern look. Everything loads faster, looks better on your phone, and is easier to navigate — whether you\'re checking calories or finding a store.'
       },
       {
         icon: Camera,
-        title: 'Automated Store Photo Gallery',
-        description: 'Built a high-performance scraping engine that automatically fetches real exterior and interior store photos for all 1,500+ Wingstop locations and uploads them to a CDN for instant loading.'
+        title: 'Real Store Photos',
+        description: 'Every Wingstop location page now shows actual photos of the store — inside and outside views so you know exactly what to expect before you visit. No more guessing what your local Wingstop looks like!'
       },
       {
         icon: Star,
-        title: 'Live Google Reviews Integration',
-        description: 'Each store page now displays authentic customer reviews sourced directly from Google Maps, giving visitors real social proof alongside nutrition data.'
+        title: 'Customer Reviews on Every Store',
+        description: 'Wondering if a Wingstop location is any good? Each store page now shows real customer reviews so you can see what other wing fans are saying before you order.'
       },
       {
         icon: Search,
-        title: 'Per-Store Unique SEO Content',
-        description: 'Dynamically generated FAQs, Schema markup, and meta descriptions now use exact street addresses to ensure zero duplicate content across locations in the same city.'
+        title: 'Smarter Store Pages',
+        description: 'Each store page now has its own unique FAQs answered — like "What time does the Wingstop on Main St close tonight?" or "Can I get delivery from this location?" — tailored to the exact address.'
       },
       {
         icon: ShieldCheck,
-        title: 'Google Attribution & Compliance',
-        description: 'Added proper "Sourced from Google Maps" attribution badges on all photo galleries and review sections to maintain full compliance with Google\'s usage policies.'
+        title: 'Allergen & Gluten-Free Guides',
+        description: 'We\'ve improved our allergen menu and gluten-free pages so you can quickly identify safe options. Perfect if you have dietary restrictions and want to order with confidence.'
       },
       {
         icon: Zap,
-        title: 'Build & Performance Fixes',
-        description: 'Resolved Vercel deployment blockers, optimized MongoDB connection timeouts, and cleaned up the build pipeline for faster, more reliable static generation of 1,991 pages.'
+        title: 'Faster Page Loading',
+        description: 'The entire site now loads significantly faster. Store pages, menu pages, and the nutrition calculator all open almost instantly — even on slower connections.'
       },
     ],
-    tags: ['Redesign', 'SEO', 'Store Data', 'Performance'],
+    tags: ['New Design', 'Store Photos', 'Reviews', 'Speed'],
   },
   {
     version: '1.0',
     date: 'April 5, 2026',
-    title: 'Initial Launch — Wingstop Nutrition Calculator',
-    description: 'The first public release of the Wingstop Calorie Calculator — a comprehensive, fan-built nutrition portal covering every item on the Wingstop menu with full macro breakdowns, a store locator spanning all US locations, and dedicated category pages.',
+    title: 'We Launched! 🎉',
+    description: 'The Wingstop Nutrition Calculator went live! We built a free tool to help you check the calories, protein, fat, carbs, and more for every single item on the Wingstop menu — plus a directory of every Wingstop location in the United States.',
     type: 'major',
     highlights: [
       {
         icon: Rocket,
-        title: 'Full Menu Nutrition Database',
-        description: 'Launched with complete calorie and macronutrient data for every Wingstop menu item — Classic Wings, Boneless Wings, Tenders, Chicken Sandwiches, Sides, Dips, Drinks, and Desserts.'
+        title: 'Complete Nutrition Info for Every Item',
+        description: 'From Classic Wings to Chicken Sandwiches, Boneless Wings to Sides and Desserts — we added full calorie and nutrition breakdowns for the entire Wingstop menu. Just pick your item and see the facts instantly.'
       },
       {
         icon: MapPin,
-        title: '1,500+ Store Locator',
-        description: 'Integrated a full US Wingstop store directory with addresses, phone numbers, operating hours, delivery hours, and interactive Google Maps embeds for every location.'
+        title: 'Find Any Wingstop Near You',
+        description: 'Need to find the closest Wingstop? Browse over 1,500 locations across the US with addresses, phone numbers, store hours, delivery hours, and a map — all on one page.'
       },
       {
         icon: Globe,
-        title: 'SEO-First Architecture',
-        description: 'Built on Next.js 14 with full static site generation, structured data (JSON-LD), dynamic sitemaps, and optimized meta tags — designed from day one to rank on Google.'
+        title: 'Dedicated Menu Category Pages',
+        description: 'We created individual pages for every menu category — Wings, Tenders, Sandwiches, Sides, Dips, Drinks, and Desserts — so you can browse nutrition info the way you browse the menu.'
       },
       {
         icon: Sparkles,
-        title: 'Interactive Calorie Calculator',
-        description: 'A real-time meal builder that lets users select items, see calorie totals, and compare macros — all client-side with zero loading delays.'
+        title: 'Build-Your-Meal Calculator',
+        description: 'Our interactive calculator lets you add multiple items to build your full meal and see the combined calories, protein, fat, and carbs in real time. Perfect for meal planning or staying on track with your diet goals.'
       },
     ],
-    tags: ['Launch', 'Nutrition', 'Locations', 'Calculator'],
+    tags: ['Launch', 'Nutrition', 'Store Finder', 'Calculator'],
   },
 ];
 
