@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 export const alt = 'Wingstop Nutrition Calculator - Track Calories & Macros Instantly';
 export const size = {
     width: 1200,
