@@ -73,7 +73,8 @@ async function run() {
     for (const loc of targets) {
         const page = await browser.newPage();
         try {
-            const query = encodeURIComponent(`Wingstop ${loc.address} ${loc.city} ${loc.stateName}`);
+            const queryParts = ['Wingstop', loc.address, loc.city, loc.stateName || loc.state].filter(Boolean);
+            const query = encodeURIComponent(queryParts.join(' '));
             const url = `https://www.google.com/maps/search/${query}`;
             console.log(`\n======================================================`);
             console.log(`Navigating to Google Maps for: ${loc.storeSlug}`);
