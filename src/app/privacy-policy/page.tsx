@@ -5,6 +5,13 @@ import Breadcrumb from '@/components/Breadcrumb';
 export const metadata: Metadata = {
   title: 'Privacy Policy | Wingstop Nutrition Calculator 2026',
   description: 'Learn how we collect, use, and protect your data at Wingstop Nutrition Calculator.',
+  openGraph: {
+    title: 'Privacy Policy | Wingstop Nutrition Calculator 2026',
+    description: 'Learn how we collect, use, and protect your data at Wingstop Nutrition Calculator.',
+  },
+  alternates: {
+    canonical: 'https://wingstopcaloriecalculator.us/privacy-policy',
+  },
 };
 
 export default function PrivacyPolicyPage() {

@@ -4,6 +4,13 @@ import Breadcrumb from '@/components/Breadcrumb';
 export const metadata: Metadata = {
   title: 'Disclaimer | Wingstop Nutrition Calculator 2026',
   description: 'Important legal and medical disclaimers regarding the Wingstop Nutrition Calculator website.',
+  openGraph: {
+    title: 'Disclaimer | Wingstop Nutrition Calculator 2026',
+    description: 'Important legal and medical disclaimers regarding the Wingstop Nutrition Calculator website.',
+  },
+  alternates: {
+    canonical: 'https://wingstopcaloriecalculator.us/disclaimer',
+  },
 };
 
 export default function DisclaimerPage() {

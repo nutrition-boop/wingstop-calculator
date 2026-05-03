@@ -4,6 +4,13 @@ import Breadcrumb from '@/components/Breadcrumb';
 export const metadata: Metadata = {
   title: 'Terms of Service | Wingstop Nutrition Calculator 2026',
   description: 'Read the terms of service governing the use of the Wingstop Nutrition Calculator.',
+  openGraph: {
+    title: 'Terms of Service | Wingstop Nutrition Calculator 2026',
+    description: 'Read the terms of service governing the use of the Wingstop Nutrition Calculator.',
+  },
+  alternates: {
+    canonical: 'https://wingstopcaloriecalculator.us/terms',
+  },
 };
 
 export default function TermsPage() {
