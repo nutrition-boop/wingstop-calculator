@@ -60,6 +60,7 @@ export default function Footer() {
         { label: 'Store Hours', href: '/hours' },
         { label: 'Holiday Hours', href: '/holiday-hours' },
         { label: 'Locations', href: '/locations' },
+        { label: "What's New", href: '/whats-new' },
       ]
     },
     {
