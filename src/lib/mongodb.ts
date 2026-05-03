@@ -24,9 +24,11 @@ async function dbConnect() {
     return cached.conn;
   }
 
-  if (!cached.promise) {
+    if (!cached.promise) {
     const opts = {
       bufferCommands: false,
+      serverSelectionTimeoutMS: 5000, // Fail fast if Vercel IP is blocked by MongoDB Atlas
+      socketTimeoutMS: 45000,
     };
 
     cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
