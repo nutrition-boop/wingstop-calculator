@@ -13,7 +13,6 @@ import { Zap } from 'lucide-react';
 interface FaqItem { question: string; answer: string; }
 
 interface Props {
-  faqs: FaqItem[];
   stats: { label: string; target: number; suffix: string }[];
 }
 
@@ -56,7 +55,7 @@ function SectionBadge({ badge }: { badge: string }) {
 
 // ─── Client Component ─────────────────────────────────────────────────────────
 
-export default function HomeClient({ faqs, stats }: Props) {
+export default function HomeClient({ stats }: Props) {
   return (
     <>
       {/* Animated Stats Row */}
@@ -73,31 +72,6 @@ export default function HomeClient({ faqs, stats }: Props) {
 
       {/* Calculator */}
       <Calculator />
-
-      {/* Popular Combos */}
-      <section className="py-12">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="rounded-[3rem] overflow-hidden shadow-2xl shadow-gray-200/50">
-            <CombosSection />
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-28 bg-slate-50">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <SectionBadge badge="Common Questions" />
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-gray-900 italic uppercase leading-none mb-4">
-              Common Wingstop Nutrition Questions
-            </h2>
-            <p className="text-base text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed">
-              Answers to the most-searched calorie and macro questions about Wingstop.
-            </p>
-          </div>
-          <FAQAccordion items={faqs} />
-        </div>
-      </section>
 
       {/* Floating UI */}
       <FloatingTracker />

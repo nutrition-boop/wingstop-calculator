@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import React from 'react';
 import Link from 'next/link';
 import NutritionTable from '@/components/NutritionTable';
+import FAQAccordion from '@/components/FAQAccordion';
 import HomeClient from '@/components/HomeClient';
 import {
   ShieldCheck, Zap, Target, Flame,
@@ -230,8 +231,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Client-side interactive section (stats + calculator + combos + FAQ) */}
-          <HomeClient faqs={faqs} stats={stats} />
+          {/* Client-side interactive section (stats + calculator) */}
+          <HomeClient stats={stats} />
         </div>
       </section>
 
@@ -466,6 +467,32 @@ export default function Home() {
                 <span className="text-[10px] text-gray-400 font-bold mt-1 uppercase tracking-wider">{l.sub}</span>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ FAQ SECTION ═══ */}
+      <section className="py-28 bg-slate-50 border-t border-gray-100">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/5 border border-primary/10 mb-6">
+              <Zap size={12} className="text-primary" />
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/60">Common Questions</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-gray-900 italic uppercase leading-none mb-4">
+              Common Wingstop Nutrition Questions
+            </h2>
+            <p className="text-base text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed">
+              Answers to the most-searched calorie and macro questions about Wingstop.
+            </p>
+          </div>
+          <FAQAccordion items={faqs} />
+          
+          <div className="mt-16 text-center">
+            <a href="#calculator-top" className="inline-flex items-center gap-3 px-8 py-4 bg-white border-2 border-gray-100 text-gray-900 rounded-2xl font-black uppercase tracking-widest text-sm shadow-sm hover:border-primary hover:text-primary transition-all group">
+              <CalcIcon size={18} className="text-gray-400 group-hover:text-primary transition-colors" />
+              Back to Calculator
+            </a>
           </div>
         </div>
       </section>
