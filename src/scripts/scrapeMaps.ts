@@ -94,8 +94,12 @@ async function run() {
                     const imgs = Array.from(document.querySelectorAll('img'));
                     return imgs
                         .map(img => img.src)
-                        .filter(src => (src.includes('googleusercontent.com/p/') || src.includes('ggpht.com/p/')))
-                        .filter(src => src.length > 50);
+                        .filter(src => (
+                             src.includes('googleusercontent.com/') || 
+                             src.includes('ggpht.com/') || 
+                             src.includes('streetviewpixels-pa.googleapis.com/')
+                        ))
+                        .filter(src => src.length > 50 && !src.includes('MapsLogo'));
                 });
 
                 const uniqueImages = [...new Set(images)].slice(0, 2);
