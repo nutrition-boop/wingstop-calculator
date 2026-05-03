@@ -33,52 +33,52 @@ const CATEGORY_SEO_DATA: Record<string, { image: string; alt: string; aspect: st
   'combos': {
     image: '/images/menu/Wingstop wing combos menu.webp',
     alt: 'Wingstop wing combos menu',
-    aspect: 'aspect-[1200/940]'
+    aspect: '1200/940'
   },
   'deals': {
     image: '/images/menu/deals-seo.webp',
     alt: 'wingstop deals',
-    aspect: 'aspect-[1200/920]'
+    aspect: '1200/920'
   },
   'group-packs': {
     image: '/images/menu/group-packs-seo.webp',
     alt: 'wingstop group pack menu',
-    aspect: 'aspect-[1000/1000]'
+    aspect: '1000/1000'
   },
   'by-the-piece': {
     image: '/images/menu/by-the-piece-seo.webp',
     alt: 'wingstop wings by piece menu',
-    aspect: 'aspect-[1000/1000]'
+    aspect: '1000/1000'
   },
   'tenders': {
     image: '/images/menu/tenders-seo.webp',
     alt: 'wingstop tenders menu',
-    aspect: 'aspect-[1000/1000]'
+    aspect: '1000/1000'
   },
   'sandwiches': {
     image: '/images/menu/sandwiches-seo.webp',
     alt: 'wingstop chicken sandwich menu',
-    aspect: 'aspect-[1000/1000]'
+    aspect: '1000/1000'
   },
   'sides': {
     image: '/images/menu/sides-seo.webp',
     alt: 'wingstop sides menu',
-    aspect: 'aspect-[1000/1000]'
+    aspect: '1000/1000'
   },
   'dips': {
     image: '/images/menu/dips-seo.webp',
     alt: 'wingstop all sauces',
-    aspect: 'aspect-[1000/1000]'
+    aspect: '1000/1000'
   },
   'drinks': {
     image: '/images/menu/drinks-seo.webp',
     alt: 'wingstop drinks menu',
-    aspect: 'aspect-[1000/1000]'
+    aspect: '1000/1000'
   },
   'desserts': {
     image: '/images/menu/desserts-seo.webp',
     alt: 'wingstop desserts menu',
-    aspect: 'aspect-[1000/1000]'
+    aspect: '1000/1000'
   }
 };
 
@@ -392,7 +392,7 @@ function CategoryView({ cfg, slug, items: dbItems }: { cfg: any, slug: string, i
           </div>
           
           <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl shadow-primary/5 overflow-hidden group">
-            <div className={`relative ${CATEGORY_SEO_DATA[slug].aspect} w-full`}>
+            <div className="relative w-full" style={{ aspectRatio: CATEGORY_SEO_DATA[slug].aspect }}>
               <Image 
                 src={CATEGORY_SEO_DATA[slug].image} 
                 alt={CATEGORY_SEO_DATA[slug].alt}
