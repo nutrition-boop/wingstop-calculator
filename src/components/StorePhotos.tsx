@@ -1,6 +1,5 @@
 'use client';
 import { Camera } from 'lucide-react';
-import Image from 'next/image';
 
 interface StorePhotosProps {
   photos: string[];
@@ -21,7 +20,7 @@ export default function StorePhotos({ photos, city, state, address }: StorePhoto
                     We currently do not have any gallery photos for this Wingstop location. Check back later!
                 </p>
                 <div className="mt-8 text-[9px] font-bold uppercase tracking-widest text-gray-400 bg-gray-50 px-4 py-2 rounded-full">
-                    Photos & Reviews are sourced from Google Maps
+                    Photos &amp; Reviews are sourced from Google Maps
                 </div>
             </div>
         );
@@ -35,18 +34,16 @@ export default function StorePhotos({ photos, city, state, address }: StorePhoto
 
             <div className={`grid gap-4 ${photos.length > 2 ? 'grid-cols-2 md:grid-cols-3' : 'grid-cols-2'}`}>
                 {photos.map((src, i) => {
-                    // Make the first image span a larger area in masonry grid if there are enough images
                     const isFeatured = i === 0 && photos.length >= 3;
                     return (
                         <div key={i} className={`rounded-3xl overflow-hidden bg-gray-50 relative group cursor-pointer shadow-sm border border-gray-50 ${isFeatured ? 'col-span-2 row-span-2 h-[300px] md:h-[400px]' : 'col-span-1 h-[140px] md:h-[250px]'}`}>
                             <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10 duration-300" />
-                            <Image 
+                            {/* Using native img to bypass Vercel Image Optimization quota — Cloudinary already serves optimized .webp */}
+                            <img 
                                 src={src} 
                                 alt={`Wingstop food and storefront view at ${address.split(',')[0]} in ${city}, ${state}`}
-                                fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                priority={i === 0}
-                                className="object-cover transition-transform duration-[1500ms] group-hover:scale-125"
+                                loading={i === 0 ? 'eager' : 'lazy'}
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-125"
                             />
                         </div>
                     );
