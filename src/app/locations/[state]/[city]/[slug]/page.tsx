@@ -64,21 +64,23 @@ export default async function LocationDetailPage({ params }: Props) {
   // Fetch real Google Places rating and reviews (Now powered by MongoDB for instant loading)
   const placeDetails = await getGooglePlaceDetails('Wingstop', loc.stateName, loc.city, loc.address, loc.slug);
 
+  const streetName = loc.address ? loc.address.split(',')[0] : loc.city;
+
   const dynamicFAQs = [
     {
-      q: `Does the Wingstop in ${loc.city} have dine-in seating?`,
+      q: `Does the Wingstop on ${streetName} in ${loc.city} have dine-in seating?`,
       a: `The Wingstop location at ${loc.address} generally offers carryout and delivery. Many locations have limited dine-in seating, but it's best to verify directly with the store at ${loc.phone}.`
     },
     {
-      q: `What time does the ${loc.city} Wingstop close tonight?`,
-      a: `Today ${todayHr ? `Wingstop in ${loc.city} closes at ${todayHr.close}.` : `this location is currently reported as closed.`} Check the full hours above for the week.`
+      q: `What time does the ${streetName} Wingstop close tonight?`,
+      a: `Today ${todayHr ? `Wingstop on ${streetName} closes at ${todayHr.close}.` : `this location is currently reported as closed.`} Check the full hours above for the week.`
     },
     {
-      q: `Can you get Wingstop delivery in ${loc.city}?`,
-      a: `Yes, this Wingstop location typically partners with major delivery delivery apps like DoorDash, UberEats, and GrubHub for delivery to the ${loc.city} area.`
+      q: `Can you get Wingstop delivery from the ${streetName} location?`,
+      a: `Yes, this Wingstop location typically partners with major delivery apps like DoorDash, UberEats, and GrubHub for delivery to the ${loc.city} area.`
     },
     {
-      q: `What are the most popular wing flavors to order?`,
+      q: `What are the most popular wing flavors to order at Wingstop ${loc.city}?`,
       a: `While favorites vary, Wingstop is famous for its Lemon Pepper, Mango Habanero, and classic Mild or Hot choices. Use our nutrition calculator to see the stats for all sauces!`
     }
   ];
