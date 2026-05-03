@@ -4,21 +4,12 @@ import { CheckCircle, XCircle, AlertTriangle, ChevronDown, Leaf } from 'lucide-r
 export const metadata: Metadata = {
   title: 'Wingstop Gluten-Free Menu: Safe Options & What to Avoid (Updated Guide)',
   description: 'Find out which Wingstop menu items are gluten-free, including wings, fries, and sauces. Get all the answers to your gluten-free dining questions at Wingstop!',
-  keywords: [
-    'wingstop gluten free',
-    'wingstop gluten free menu',
-    'are wingstop wings gluten free',
-    'wingstop ranch gluten free',
-    'are wingstop fries gluten free',
-    'does wingstop have gluten free wings',
-    'wingstop wings gluten free',
-  ],
   openGraph: {
     title: 'Wingstop Gluten-Free Menu: Safe Options & What to Avoid (Updated Guide)',
     description: 'Find out which Wingstop menu items are gluten-free, including wings, fries, and sauces.',
   },
   alternates: {
-    canonical: '/wingstop-gluten-free',
+    canonical: 'https://wingstopcaloriecalculator.us/wingstop-gluten-free',
   },
 };
 
@@ -28,7 +19,7 @@ const structuredData = {
   headline: 'Wingstop Gluten-Free Menu: Safe Options & What to Avoid (Updated Guide)',
   description: 'Find out which Wingstop menu items are gluten-free, including wings, fries, and sauces.',
   author: { '@type': 'Organization', name: 'Wingstop Calculator' },
-  mainEntityOfPage: { '@type': 'WebPage', '@id': '/wingstop-gluten-free' },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://wingstopcaloriecalculator.us/wingstop-gluten-free' },
 };
 
 const faqStructuredData = {

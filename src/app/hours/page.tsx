@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     description: "Check out Wingstop hours for every day of the week! Find their opening and closing times, including weekend, for your nearest location.",
   },
   alternates: {
-    canonical: '/hours',
+    canonical: 'https://wingstopcaloriecalculator.us/hours',
   },
 };
 
@@ -59,7 +59,7 @@ const articleStructuredData = {
   description:
     "Check out Wingstop hours for every day of the week! Find their opening and closing times, including weekend, for your nearest location.",
   author: { '@type': 'Organization', name: 'Wingstop Calculator' },
-  mainEntityOfPage: { '@type': 'WebPage', '@id': '/hours' },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://wingstopcaloriecalculator.us/hours' },
 };
 
 const hours = [

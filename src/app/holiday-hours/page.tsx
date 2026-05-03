@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: 'Wingstop Holiday Hours | Full Schedule for All Holidays (2026)',
     description: "Find out Wingstop's holiday hours, including Christmas Day, New Year's Eve, Thanksgiving, and more.",
   },
-  alternates: { canonical: '/holiday-hours' },
+  alternates: { canonical: 'https://wingstopcaloriecalculator.us/holiday-hours' },
 };
 
 const faqStructuredData = {

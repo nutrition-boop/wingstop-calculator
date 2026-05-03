@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description: 'Learn about the Wingstop Nutrition Calculator team. We help you make informed choices by providing accurate calorie counts, macros, allergen data, and menu prices for every Wingstop item.',
   },
   alternates: {
-    canonical: '/about',
+    canonical: 'https://wingstopcaloriecalculator.us/about',
   },
 };
 
