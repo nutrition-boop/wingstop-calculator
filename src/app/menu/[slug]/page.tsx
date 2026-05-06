@@ -16,6 +16,7 @@ import SocialShare from '@/components/SocialShare';
 import CompareItemsSection from '@/components/CompareItemsSection';
 import NutritionTable from '@/components/NutritionTable';
 import { CATEGORY_SEO_CONTENT } from '@/lib/data/categorySeoContent';
+import { getFormattedDate } from '@/lib/utils/date';
 
 // ─── UI Config ─────────────────────────────────────────────────────────────
 
@@ -323,7 +324,7 @@ function CategoryView({ cfg, slug, items: dbItems }: { cfg: any, slug: string, i
             <div className="flex-1">
               <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/10 border border-white/10 mb-6">
                 <cfg.icon size={16} className="text-secondary" />
-                <span className="text-[10px] font-black uppercase tracking-[0.35em] text-white/60">Official Category</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.35em] text-white/60">Updated {getFormattedDate()} • Official Category</span>
               </div>
               <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter italic uppercase leading-none mb-6">
                 {seoContent?.h1 || cfg.label}
@@ -589,7 +590,7 @@ function ItemView({ item }: { item: MenuItem }) {
                     <Icon size={14} className="stroke-[3]" /> {cat.label}
                   </span>
                   <span className="px-3 py-1.5 bg-white/80 border border-slate-100 rounded-full text-[10px] font-black uppercase tracking-widest text-slate-500">
-                    #{item.id}
+                    Updated {getFormattedDate()}
                   </span>
                 </div>
                 <h1 className="text-5xl lg:text-7xl font-black text-slate-900 mb-6 tracking-tight italic uppercase leading-none">

@@ -9,6 +9,7 @@ import {
   CupSoda, Cookie
 } from 'lucide-react';
 import FAQAccordion from '@/components/FAQAccordion';
+import { getFormattedDate } from '@/lib/utils/date';
 
 // ─── Category Config ─────────────────────────────────────────────────────────
 
@@ -131,7 +132,7 @@ export default async function MenuPage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div>
               <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/10 border border-white/10 mb-6">
-                <span className="text-[10px] font-black uppercase tracking-[0.35em] text-white/60">2026 Nutrition Data</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.35em] text-white/60">Updated {getFormattedDate()} • 2026 Nutrition Data</span>
               </div>
               <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter italic uppercase leading-none mb-4">
                 Wingstop <span className="text-secondary">Menu</span>

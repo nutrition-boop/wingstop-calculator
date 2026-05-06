@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Users, Target, Shield, Heart, ChevronRight, Calculator, Utensils, MapPin } from 'lucide-react';
 import Link from 'next/link';
+import { getFormattedDate } from '@/lib/utils/date';
 
 export const metadata: Metadata = {
   title: 'About Us | Wingstop Nutrition Calculator – Our Mission & Story',
@@ -52,7 +53,7 @@ export default function AboutPage() {
         <div className="relative max-w-3xl mx-auto px-6 text-center">
           <span className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/90 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-8 backdrop-blur-sm">
             <Users size={14} className="text-[#FDB913]" />
-            About Us
+            Updated {getFormattedDate()} • About Us
           </span>
 
           <h1 className="text-4xl sm:text-5xl font-black text-white leading-tight tracking-tight mb-6">

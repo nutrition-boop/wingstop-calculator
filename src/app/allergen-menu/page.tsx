@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { getFormattedDate } from '@/lib/utils/date';
 import {
   AlertTriangle, CheckCircle2, XCircle, Shield, Info,
   Tag, Filter, ChevronDown, ChevronUp, ArrowRight,
@@ -163,6 +164,11 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 export default function AllergenMenuPage() {
   const [filteredAllergen, setFilteredAllergen] = useState<AllergenKey | 'all'>('all');
+  const [currentDate, setCurrentDate] = useState<string>('');
+
+  useEffect(() => {
+    setCurrentDate(getFormattedDate());
+  }, []);
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -197,7 +203,9 @@ export default function AllergenMenuPage() {
         <div className="max-w-[1100px] mx-auto px-6 text-center relative z-10">
           <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/10 border border-white/10 mb-8">
             <Shield size={14} className="text-secondary" />
-            <span className="text-[11px] font-black uppercase tracking-[0.3em] text-white/70">Official Reference · 2026</span>
+            <span className="text-[11px] font-black uppercase tracking-[0.3em] text-white/70">
+              {currentDate ? `Updated ${currentDate} • ` : ''}Official Reference · 2026
+            </span>
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter italic uppercase leading-none mb-6">
             Wingstop <span className="text-secondary">Allergen</span> Menu 2026

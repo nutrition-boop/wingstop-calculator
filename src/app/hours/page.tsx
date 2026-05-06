@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Clock, Search, Globe, Map, ChevronDown, AlertTriangle } from 'lucide-react';
+import { getFormattedDate } from '@/lib/utils/date';
 
 export const metadata: Metadata = {
   title: 'Wingstop Hours | Find Wingstop Opening & Closing Times 2026',
@@ -136,7 +137,7 @@ export default function HoursPage() {
           <div className="relative max-w-3xl mx-auto px-6 text-center">
             <span className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/90 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-8 backdrop-blur-sm">
               <Clock size={14} className="text-[#FDB913]" />
-              Hours Guide · Updated 2026
+              Updated {getFormattedDate()} • Hours Guide
             </span>
 
             <h1 className="text-4xl sm:text-5xl font-black text-white leading-tight tracking-tight mb-6">

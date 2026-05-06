@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { ShieldCheck, Eye, Lock, FileText, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import { getFormattedDate } from '@/lib/utils/date';
 export const metadata: Metadata = {
   title: 'Privacy Policy | Wingstop Nutrition Calculator 2026',
   description: 'Learn how we collect, use, and protect your data at Wingstop Nutrition Calculator.',
@@ -35,7 +36,7 @@ export default function PrivacyPolicyPage() {
           <div className="text-center md:text-left">
             <span className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/90 text-[10px] font-black uppercase tracking-widest px-5 py-2 rounded-full mb-8 backdrop-blur-sm">
               <ShieldCheck size={14} className="text-[#FDB913]" />
-              Privacy & Data Security
+              Updated {getFormattedDate()} • Privacy & Data Security
             </span>
 
             <h1 className="text-5xl sm:text-7xl font-black text-white leading-tight tracking-tighter mb-6 uppercase italic">

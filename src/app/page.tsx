@@ -11,6 +11,7 @@ import {
   Utensils, MapPin, Leaf, AlertTriangle,
   Package, Beef, Dumbbell, AlertCircle
 } from 'lucide-react';
+import { getFormattedDate } from '@/lib/utils/date';
 
 // ── SEO Metadata ───────────────────────────────────────────────────────────────
 
@@ -199,7 +200,9 @@ export default function Home() {
           <div className="max-w-5xl mx-auto text-center mb-16">
             <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white/10 border border-white/20 shadow-xl backdrop-blur-md mb-8 hover:bg-white/15 transition-all">
               <Star size={13} className="text-[#FDB913] fill-[#FDB913]" />
-              <span className="text-[10px] font-black uppercase tracking-[0.35em] text-white/90">Official Nutri-Data 2026</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.35em] text-white/90">
+                Updated {getFormattedDate()} • Official Nutri-Data 2026
+              </span>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             </div>
 

@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Mail, MapPin, Search, Send, Clock, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
+import { getFormattedDate } from '@/lib/utils/date';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -17,6 +18,12 @@ export default function ContactPage() {
     success: false,
     error: '',
   });
+
+  const [currentDate, setCurrentDate] = useState<string>('');
+
+  useEffect(() => {
+    setCurrentDate(getFormattedDate());
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -57,7 +64,7 @@ export default function ContactPage() {
         <div className="relative max-w-3xl mx-auto px-6 text-center">
           <span className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/90 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-8 backdrop-blur-sm">
             <Mail size={14} className="text-[#FDB913]" />
-            Get In Touch
+            {currentDate ? `Updated ${currentDate} • ` : ''}Get In Touch
           </span>
 
           <h1 className="text-4xl sm:text-5xl font-black text-white leading-tight tracking-tight mb-6">
