@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import { MenuItem } from '../data/menu';
 
 interface CalculatorState {
@@ -50,54 +51,61 @@ const calculateTotals = (selectedItems: { item: MenuItem; quantity: number }[]) 
   };
 };
 
-export const useCalculatorStore = create<CalculatorState>((set) => ({
-  selectedItems: [],
-  totalCalories: 0,
-  totalProtein: 0,
-  totalCarbs: 0,
-  totalFat: 0,
-  totalSaturatedFat: 0,
-  totalSodium: 0,
-  totalSugars: 0,
-  totalFiber: 0,
-
-  addItem: (item: MenuItem) => {
-    set(state => {
-      const existing = state.selectedItems.find(si => si.item.id === item.id);
-      let newSelectedItems;
-      if (existing) {
-        newSelectedItems = state.selectedItems.map(si =>
-          si.item.id === item.id ? { ...si, quantity: si.quantity + 1 } : si
-        );
-      } else {
-        newSelectedItems = [...state.selectedItems, { item, quantity: 1 }];
-      }
-      const totals = calculateTotals(newSelectedItems);
-      return { selectedItems: newSelectedItems, ...totals };
-    });
-  },
-
-  removeItem: (id: string) => {
-    set(state => {
-      const newSelectedItems = state.selectedItems
-        .map(si => si.item.id === id ? { ...si, quantity: si.quantity - 1 } : si)
-        .filter(si => si.quantity > 0);
-      const totals = calculateTotals(newSelectedItems);
-      return { selectedItems: newSelectedItems, ...totals };
-    });
-  },
-
-  clearItems: () => {
-    set({ 
-      selectedItems: [], 
-      totalCalories: 0, 
-      totalProtein: 0, 
-      totalCarbs: 0, 
+export const useCalculatorStore = create<CalculatorState>()(
+  persist(
+    (set) => ({
+      selectedItems: [],
+      totalCalories: 0,
+      totalProtein: 0,
+      totalCarbs: 0,
       totalFat: 0,
       totalSaturatedFat: 0,
       totalSodium: 0,
       totalSugars: 0,
-      totalFiber: 0
-    });
-  },
-}));
+      totalFiber: 0,
+
+      addItem: (item: MenuItem) => {
+        set(state => {
+          const existing = state.selectedItems.find(si => si.item.id === item.id);
+          let newSelectedItems;
+          if (existing) {
+            newSelectedItems = state.selectedItems.map(si =>
+              si.item.id === item.id ? { ...si, quantity: si.quantity + 1 } : si
+            );
+          } else {
+            newSelectedItems = [...state.selectedItems, { item, quantity: 1 }];
+          }
+          const totals = calculateTotals(newSelectedItems);
+          return { selectedItems: newSelectedItems, ...totals };
+        });
+      },
+
+      removeItem: (id: string) => {
+        set(state => {
+          const newSelectedItems = state.selectedItems
+            .map(si => si.item.id === id ? { ...si, quantity: si.quantity - 1 } : si)
+            .filter(si => si.quantity > 0);
+          const totals = calculateTotals(newSelectedItems);
+          return { selectedItems: newSelectedItems, ...totals };
+        });
+      },
+
+      clearItems: () => {
+        set({ 
+          selectedItems: [], 
+          totalCalories: 0, 
+          totalProtein: 0, 
+          totalCarbs: 0, 
+          totalFat: 0,
+          totalSaturatedFat: 0,
+          totalSodium: 0,
+          totalSugars: 0,
+          totalFiber: 0
+        });
+      },
+    }),
+    {
+      name: 'wingstop-calculator-storage',
+    }
+  )
+);

@@ -17,6 +17,7 @@ import CompareItemsSection from '@/components/CompareItemsSection';
 import NutritionTable from '@/components/NutritionTable';
 import { CATEGORY_SEO_CONTENT } from '@/lib/data/categorySeoContent';
 import { getFormattedDate } from '@/lib/utils/date';
+import AddToCartButton from '@/components/AddToCartButton';
 
 // ─── UI Config ─────────────────────────────────────────────────────────────
 
@@ -644,6 +645,9 @@ function ItemView({ item }: { item: MenuItem }) {
                     </div>
                   </div>
                 </div>
+                
+                {/* Premium Add to Calculator Button */}
+                <AddToCartButton item={item} />
               </div>
             </div>
 
