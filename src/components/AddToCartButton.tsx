@@ -6,6 +6,7 @@ import { Calculator, Plus, Check, ArrowRight } from 'lucide-react';
 import { useCalculatorStore } from '@/lib/store/calculator';
 import { MenuItem } from '@/lib/data/menu';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface AddToCartButtonProps {
   item: MenuItem;
@@ -14,11 +15,16 @@ interface AddToCartButtonProps {
 export default function AddToCartButton({ item }: AddToCartButtonProps) {
   const addItem = useCalculatorStore((state) => state.addItem);
   const [isAdded, setIsAdded] = useState(false);
+  const router = useRouter();
 
   const handleAdd = () => {
     addItem(item);
     setIsAdded(true);
-    setTimeout(() => setIsAdded(false), 3000);
+    
+    // Short delay to show the "Added!" state before redirecting
+    setTimeout(() => {
+      router.push('/#calculator');
+    }, 800);
   };
 
   return (
