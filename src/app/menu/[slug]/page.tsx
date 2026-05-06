@@ -602,14 +602,12 @@ function ItemView({ item }: { item: MenuItem }) {
               {/* 2. Mobile Image */}
               <div className="order-2 lg:hidden relative group my-8">
                 <div className="absolute inset-0 bg-primary/10 blur-[60px] rounded-full scale-75 group-hover:scale-95 transition-transform duration-700" />
-                <div className="relative aspect-square w-full max-w-[400px] mx-auto">
-                  <Image
+                <div className="relative aspect-square w-full max-w-[400px] min-h-[300px] mx-auto z-10">
+                  <img
                     src={item.image || '/images/menu/wings.png'}
                     alt={item.name}
-                    fill
-                    className="object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.12)] group-hover:scale-105 transition-all duration-700 ease-out"
-                    sizes="(max-width: 768px) 100vw, 400px"
-                    priority
+                    className="w-full h-full object-contain"
+                    loading="eager"
                   />
                 </div>
               </div>
@@ -654,14 +652,12 @@ function ItemView({ item }: { item: MenuItem }) {
             {/* Desktop Image */}
             <div className="hidden lg:block relative group">
               <div className="absolute inset-0 bg-primary/10 blur-[100px] rounded-full scale-75 group-hover:scale-95 transition-transform duration-700" />
-              <div className="relative aspect-square w-full max-w-[550px] mx-auto">
-                <Image
+              <div className="relative aspect-square w-full max-w-[550px] min-h-[300px] sm:min-h-[450px] mx-auto z-10">
+                <img
                   src={item.image || '/images/menu/wings.png'}
                   alt={item.name}
-                  fill
-                  className="object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.12)] group-hover:scale-105 transition-all duration-700 ease-out"
-                  sizes="(max-width: 768px) 100vw, 550px"
-                  priority
+                  className="w-full h-full object-contain"
+                  loading="eager"
                 />
               </div>
             </div>
