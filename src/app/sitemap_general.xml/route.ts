@@ -13,7 +13,6 @@ export async function GET() {
         '/wingstop-gluten-free',
         '/hours',
         '/holiday-hours',
-        '/locations',
         '/about',
         '/contact',
         '/privacy-policy',
