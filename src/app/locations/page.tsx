@@ -57,7 +57,7 @@ export default function LocationsIndexPage() {
 
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 border border-white/20 bg-white/10 text-white/90 backdrop-blur-sm">
-            <MapPin size={12} className="text-[#FDB913]" /> Updated {getFormattedDate()} • Official Location Directory
+            <MapPin size={12} className="text-[#FDB913]" /> Updated {getFormattedDate()} • Location Directory
           </span>
 
           <h1 className="text-5xl sm:text-7xl md:text-8xl font-black text-white leading-tight tracking-tight mb-8 uppercase" style={{ fontFamily: "'Bebas Neue', 'Outfit', sans-serif" }}>

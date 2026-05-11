@@ -23,6 +23,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         alternates: {
             canonical: `${baseUrl}${canonicalPath}`,
         },
+        robots: {
+            index: false,
+            follow: true,
+        },
     };
 }
 
@@ -57,7 +61,7 @@ export default async function CityLocationsPage({ params }: Props) {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
         name: `Wingstop Locations in ${cityName}, ${stateName}`,
-        description: `Experience the iconic flavors of Wingstop. Order carryout or delivery from any of our ${cityLocs.length} restaurants in ${cityName}, ${stateName}.`,
+        description: `Browse all ${cityLocs.length} Wingstop ${cityLocs.length === 1 ? 'location' : 'locations'} in ${cityName}, ${stateName}. View store hours, phone numbers, and get directions.`,
         url: `https://wingstopcaloriecalculator.us/locations/${params.state.toLowerCase()}/${params.city.toLowerCase()}`,
     };
 
@@ -95,10 +99,10 @@ export default async function CityLocationsPage({ params }: Props) {
                          <MapPin size={12}/> {cityLocs.length} Locations Found
                     </div>
                     <h1 className="text-5xl lg:text-7xl font-black text-gray-900 mb-6 uppercase tracking-tight leading-none" style={{ fontFamily: "'Bebas Neue', 'Outfit', sans-serif" }}>
-                        Best Wings in <span className="text-[#006938]">{cityName}</span>
+                        Wingstop in <span className="text-[#006938]">{cityName}</span>
                     </h1>
                     <p className="text-lg text-gray-500 max-w-2xl font-medium leading-relaxed mb-8">
-                        Experience the iconic flavors of Wingstop. Order carryout or delivery from any of our {cityLocs.length} restaurants in {cityName}, {stateName}.
+                        Browse all {cityLocs.length} Wingstop {cityLocs.length === 1 ? 'location' : 'locations'} in {cityName}, {stateName}. View store hours, phone numbers, and get directions.
                     </p>
                     <div className="max-w-xs">
                         <ClientGeolocationButton />
@@ -171,6 +175,7 @@ export default async function CityLocationsPage({ params }: Props) {
                                 <div className="grid grid-cols-2 gap-4 relative z-10">
                                     <Link 
                                         href={`/locations/${params.state}/${params.city}/${loc.slug}`}
+                                        rel="nofollow"
                                         className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 border-2 border-gray-100 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:border-[#006938] hover:text-[#006938] transition-all group/btn"
                                     >
                                         Details <ChevronRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />

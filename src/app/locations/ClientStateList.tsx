@@ -158,6 +158,7 @@ export default function ClientStateList({ states }: Props) {
             <Link
               key={s.stateCode}
               href={`/locations/${s.stateSlug}`}
+              rel="nofollow"
               className="group flex flex-col p-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#006938]/30 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#006938]/5 to-transparent rounded-bl-full -z-10 group-hover:scale-[2] transition-transform duration-700" />

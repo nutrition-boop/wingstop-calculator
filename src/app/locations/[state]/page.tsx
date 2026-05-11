@@ -18,9 +18,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `Wingstop Locations in ${stateName} | Find a Store Near You`,
-    description: `Looking for the nearest Wingstop in ${stateName}? Browse our complete directory of ${locationCount} Wingstop restaurants in ${stateCode} to find the closest location.`,
+    description: `Browse all ${locationCount} Wingstop locations in ${stateName}. Find addresses, hours, and phone numbers for every Wingstop restaurant in ${stateCode}.`,
     alternates: {
       canonical: `${baseUrl}${canonicalPath}`,
+    },
+    robots: {
+      index: false,
+      follow: true,
     },
   };
 }
@@ -49,7 +53,7 @@ export default function StatePage({ params }: Props) {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: `Wingstop Locations in ${stateName}`,
-    description: `Find addresses, hours, directions, and phone numbers for ${locs.length} Wingstop locations across ${cities.length} cities in ${stateName}.`,
+    description: `Browse all ${locs.length} Wingstop locations across ${cities.length} cities in ${stateName}. Find addresses, hours, and phone numbers.`,
     url: `https://wingstopcaloriecalculator.us/locations/${params.state.toLowerCase()}`,
   };
 
@@ -111,6 +115,7 @@ export default function StatePage({ params }: Props) {
                 <Link
                   key={city.citySlug}
                   href={`/locations/${params.state}/${city.citySlug}`}
+                  rel="nofollow"
                   className="group flex items-center justify-between p-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-[#006938]/30 transition-all duration-200"
                 >
                   <div>
@@ -148,7 +153,7 @@ export default function StatePage({ params }: Props) {
                 <p className="text-xs uppercase tracking-widest text-gray-400 font-bold mb-4">Featured locations</p>
                 <div className="space-y-4">
                   {locs.slice(0, 3).map(loc => (
-                    <Link key={loc.slug} href={`/locations/${params.state}/${loc.citySlug}/${loc.slug}`} className="group block">
+                    <Link key={loc.slug} href={`/locations/${params.state}/${loc.citySlug}/${loc.slug}`} rel="nofollow" className="group block">
                       <p className="text-sm font-bold text-gray-800 group-hover:text-[#006938] mb-1 line-clamp-1">{loc.name}</p>
                       <p className="text-xs text-gray-500 line-clamp-1">{loc.address}</p>
                     </Link>

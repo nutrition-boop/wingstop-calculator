@@ -31,6 +31,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: `${baseUrl}${canonicalPath}`,
     },
+    robots: {
+      index: false,
+      follow: true,
+    },
   };
 }
 
@@ -100,33 +104,15 @@ export default async function LocationDetailPage({ params }: Props) {
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: loc.name,
-    image: placeDetails?.photoUrls?.[0] || 'https://www.wingstop.com/assets/images/favicon.ico',
-    '@id': loc.sourceUrl || `https://wingstopcaloriecalculator.us/locations/${params.state}/${params.city}/${loc.slug}`,
-    url: loc.sourceUrl || `https://wingstopcaloriecalculator.us/locations/${params.state}/${params.city}/${loc.slug}`,
-    telephone: loc.phone,
-    priceRange: "$$",
-    menu: "https://wingstopcaloriecalculator.us/menu",
-    acceptsReservations: "False",
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: loc.address,
-      addressLocality: loc.city,
-      addressRegion: loc.state,
-      postalCode: loc.zip,
-      addressCountry: 'US'
-    },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: loc.lat,
-      longitude: loc.lng
-    },
-    aggregateRating: placeDetails?.rating ? {
-      '@type': 'AggregateRating',
-      ratingValue: placeDetails.rating,
-      reviewCount: placeDetails.user_ratings_total
-    } : undefined
+    '@type': 'WebPage',
+    name: `${loc.name} - Store Info`,
+    url: `https://wingstopcaloriecalculator.us/locations/${params.state}/${params.city}/${loc.slug}`,
+    description: `Store hours, address, and contact info for the Wingstop location at ${loc.address} in ${loc.city}, ${loc.state}.`,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Wingstop Calorie Calculator',
+      url: 'https://wingstopcaloriecalculator.us'
+    }
   };
 
   const breadcrumbSchema = {
@@ -234,9 +220,7 @@ export default async function LocationDetailPage({ params }: Props) {
                 </div>
               </div>
 
-              <div className="mt-8 pt-6 border-t border-gray-50 text-sm text-gray-600 font-medium leading-relaxed">
-                <p>{generateAboutParagraph(loc)}</p>
-              </div>
+
 
               {/* Mobile Buttons */}
               <div className="mt-10 flex flex-col gap-3 sm:hidden pt-10 border-t border-gray-50">
@@ -247,45 +231,7 @@ export default async function LocationDetailPage({ params }: Props) {
             </div>
           </div>
 
-          {/* Features & Options */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:col-span-2 order-2">
-              <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm">
-                <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-6 flex items-center gap-2">
-                  <CheckCircle2 size={14} className="text-[#006938]" /> Store Features
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {['Online Ordering', 'In-Store Pickup', 'Curbside', 'Dine-In'].map(f => (
-                    <div key={f} className="flex items-center gap-2 text-[10px] font-black uppercase tracking-wider text-gray-700">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#006938]" /> {f}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm">
-                <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-6 flex items-center gap-2">
-                  <Bike size={14} className="text-[#006938]" /> Delivery Options
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  {['Wingstop.com', 'DoorDash', 'UberEats', 'GrubHub'].map(f => (
-                    <div key={f} className="flex items-center gap-2 text-[10px] font-black uppercase tracking-wider text-gray-700">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#FDB913]" /> {f}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm md:col-span-2">
-                <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-6 flex items-center gap-2">
-                  <CreditCard size={14} className="text-[#006938]" /> Payment Accepted
-                </h3>
-                <div className="flex flex-wrap gap-3">
-                  {['Visa', 'Mastercard', 'Amex', 'Discover', 'Apple Pay', 'Google Pay'].map(f => (
-                    <div key={f} className="flex items-center gap-2 text-[10px] font-black uppercase tracking-wider text-gray-700 bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-100">
-                      {f}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+
             
             {/* Popular Times */}
             <div className="lg:col-span-2 order-5">
@@ -404,7 +350,7 @@ export default async function LocationDetailPage({ params }: Props) {
                {otherLocations.map(otherLoc => {
                  const otherOpen = isOpenNow(otherLoc.hours);
                  return (
-                   <Link key={otherLoc.slug} href={`/locations/${params.state}/${params.city}/${otherLoc.slug}`} className="group bg-[#F9FAF7] rounded-3xl p-6 border border-gray-100 hover:border-[#006938]/30 hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
+                   <Link key={otherLoc.slug} href={`/locations/${params.state}/${params.city}/${otherLoc.slug}`} rel="nofollow" className="group bg-[#F9FAF7] rounded-3xl p-6 border border-gray-100 hover:border-[#006938]/30 hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col justify-between">
                      <div className="flex flex-col h-full">
                        <div className="flex justify-between items-start mb-4">
                          <div className="w-10 h-10 rounded-xl bg-white text-[#006938] flex items-center justify-center shrink-0 shadow-sm group-hover:bg-[#006938] group-hover:text-white transition-colors">
@@ -438,77 +384,5 @@ export default async function LocationDetailPage({ params }: Props) {
 function todayDayName(): string {
   const DAYS = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
   return DAYS[new Date().getDay()];
-}
-
-function generateAboutParagraph(loc: WingstopLocation): string {
-  // Deterministic seed based on location slug
-  let seed = 0;
-  for (let i = 0; i < loc.slug.length; i++) {
-    seed += loc.slug.charCodeAt(i);
-  }
-  
-  const random = () => {
-    const x = Math.sin(seed++) * 10000;
-    return x - Math.floor(x);
-  };
-  
-  const pick = <T,>(arr: T[]): T => arr[Math.floor(random() * arr.length)];
-  
-  const streetOnly = loc.address ? loc.address.split(',')[0] : 'the area';
-  
-  const keywords1 = [
-    `Wingstop in ${loc.city}`,
-    `${loc.city} Wingstop location`,
-    `Wingstop near ${loc.city}`
-  ];
-  
-  const keywords2 = [
-    `this location at ${loc.address}`,
-    `this branch on ${streetOnly}`,
-    `this restaurant at ${loc.address}`
-  ];
-
-  const lines1 = [
-    `Planning to visit ${pick(keywords1)}? ${pick(keywords2)} is a convenient spot for both dine-in and quick takeout, offering popular services like online ordering, delivery, and sometimes curbside pickup.`,
-    `If you're searching for ${pick(keywords1)}, ${pick(keywords2)} is a popular choice for locals looking for bold wing flavors and fast service. Customers can choose from dine-in, pickup, or delivery options, making it flexible for any plan.`,
-    `The ${pick(keywords1)}, located at ${loc.address}, offers a full range of services including in-store dining, online ordering, and delivery through major apps like DoorDash and UberEats.`,
-    `Looking to order from ${pick(keywords1)}? ${pick(keywords2)} is known for its convenient ordering options, including carryout, delivery, and dine-in services.`,
-    `Located at ${loc.address}, the ${pick(keywords1)} serves as a popular destination for wing lovers in the area.`
-  ];
-
-  const lines2 = [
-    `Before you order, you can use our fan-made nutrition calculator to check calories, macros, and allergen details for your favorite wings and sides.`,
-    `With tools like our calorie calculator, you can also explore macro information before placing your order to stay on track.`,
-    `To help you make better food choices, our platform provides a detailed nutrition calculator where you can check calories, protein, and other dietary information before ordering.`,
-    `To enhance your experience, you can use our nutrition calculator to plan your meal in advance by checking calories and macros.`,
-    `You can also use our nutrition calculator to explore menu details, helping you choose meals that match your dietary needs while enjoying the signature Wingstop flavors.`
-  ];
-
-  const lines3 = [
-    `Whether you're grabbing a quick meal or ordering for a group, it makes it easy to enjoy your food while staying on track with your dietary goals.`,
-    `Whether it’s a quick lunch, late-night craving, or game-day meal, this Wingstop branch offers a reliable and convenient experience.`,
-    `This makes it easier for health-conscious users to enjoy Wingstop while managing their nutrition goals.`,
-    `It’s a simple way to enjoy your favorite wings while making informed choices.`,
-    `Many customers stop by for quick meals or group orders, especially during busy hours in the evening.`
-  ];
-
-  const optionalLines = [
-    `Customers often visit during peak evening hours, especially when deals are active.`,
-    `With multiple ordering options easily accessible, it fits perfectly into any schedule.`,
-    ``, // empty string will be ignored
-    ``
-  ];
-
-  const p1 = pick(lines1);
-  const p2 = pick(lines2);
-  const p3 = pick(lines3);
-  const opt = pick(optionalLines);
-  
-  const sentences = [p1];
-  if (opt) sentences.push(opt);
-  sentences.push(p2);
-  sentences.push(p3);
-  
-  return sentences.join(' ');
 }
 
