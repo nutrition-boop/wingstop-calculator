@@ -36,6 +36,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`scroll-smooth ${outfit.variable}`}>
+      <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2962807291641591" crossOrigin="anonymous"></script>
+      </head>
       <body className={outfit.className}>
         {/* Google Analytics */}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-61S8KJ7R61" strategy="afterInteractive" />
